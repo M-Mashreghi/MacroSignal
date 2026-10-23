@@ -20,6 +20,11 @@ Precision:
 - inferred_eod
 - unknown
 
+Implementation status: `macrosignal.domain.availability.AvailabilityStamp`
+currently implements `available_at` (timezone-aware) and `precision`, the
+subset `MacroObservation` requires (Task 1.4). Task 1.5 adds the remaining
+audit fields.
+
 ## MacroObservation
 
 ```text
@@ -43,6 +48,15 @@ retrieved_at
 source_snapshot_id
 adapter_version
 ```
+
+Implemented as `macrosignal.domain.MacroObservation` (frozen, unknown fields
+rejected). Validation rejects naive datetimes, reference periods that are not a
+single period of the declared `frequency`, availability or release on/before the
+reference period end (same-day is allowed only for daily series), availability
+earlier than `release_timestamp`, `retrieved_at` before availability,
+`realtime_end < realtime_start`, availability before `vintage_date` /
+`realtime_start`, and non-finite values. Chronology checks are date-level in each
+timestamp's own timezone.
 
 ## ReleaseEvent
 
