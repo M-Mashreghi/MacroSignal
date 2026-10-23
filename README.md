@@ -192,6 +192,21 @@ The final repository should produce:
 - Streamlit dashboard,
 - historical decision audit trail.
 
+## Development Setup
+
+Requires Python 3.11+.
+
+```bash
+python -m venv .venv
+# Windows: .venv\Scriptsctivate    POSIX: source .venv/bin/activate
+python -m pip install -e ".[dev]"
+
+macrosignal version
+pytest
+ruff check .
+python scripts/validate_project.py
+```
+
 ## Claude Code Workflow
 
 Every task:

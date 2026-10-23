@@ -11,7 +11,7 @@ Update only after verification.
 
 ## Phase 1 — Foundation, Reproducibility & Research Protocol
 
-- [ ] **Task 1.1** — Complete Python Package Scaffold & Development Tooling — Commit: `—` — GitHub: `—`
+- [x] **Task 1.1** — Complete Python Package Scaffold & Development Tooling — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 1.2** — GitHub Remote & Per-Task Commit Workflow Baseline — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.3** — Typed Configuration Loader & Environment Separation — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.4** — MacroObservation Domain Model — Commit: `—` — GitHub: `—`
