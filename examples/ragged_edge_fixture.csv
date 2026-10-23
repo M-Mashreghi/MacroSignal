@@ -1,0 +1,4 @@
+as_of,feature_name,value,available_at,reference_period,age_since_available_days,stale
+2026-10-15T16:00:00-04:00,cpi_yoy,3.1,2026-10-14T08:30:00-04:00,2026-09,1,false
+2026-10-15T16:00:00-04:00,payroll_change,145000,2026-10-02T08:30:00-04:00,2026-09,13,false
+2026-10-15T16:00:00-04:00,gdp_qoq_ann,2.4,2026-09-25T08:30:00-04:00,2026-Q2,20,false

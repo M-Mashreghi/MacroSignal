@@ -1,0 +1,2 @@
+release_id,reference_period,expected_value,forecast_created_at,available_at,expectation_source,expectation_type
+CPI,2026-09,0.0,2026-10-01T12:00:00-04:00,2026-10-01T12:00:00-04:00,USER_SOURCE,consensus

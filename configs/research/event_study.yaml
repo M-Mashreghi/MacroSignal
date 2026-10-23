@@ -1,0 +1,26 @@
+name: macro_event_study_v2
+
+release_families:
+  - CPI
+  - EMPLOYMENT_SITUATION
+  - PCE
+  - GDP
+
+market_frequency: daily
+windows:
+  - release_day_to_next_session
+  - 1d
+  - 5d
+
+group_by:
+  - expectation_type
+  - surprise_sign
+  - surprise_bucket
+  - canonical_regime
+
+minimum_group_size: 12
+bootstrap_samples: 2000
+
+overlap_policy:
+  flag_nearby_events: true
+  exclude_if_required: false

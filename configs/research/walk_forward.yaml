@@ -1,0 +1,37 @@
+name: walk_forward_v2
+
+macro_registry: configs/series/us_macro_v1.yaml
+release_map: configs/series/release_map_v1.yaml
+asset_universe: configs/assets/cross_asset_v1.yaml
+regime_config: configs/regimes/regimes_v1.yaml
+signal_config: configs/signals/signals_v1.yaml
+
+split:
+  type: expanding
+  minimum_train_years: 5
+  validation_years: 1
+  test_step_months: 3
+
+rebalance:
+  frequency: weekly
+
+portfolio:
+  type: volatility_target
+  annual_vol_target: 0.10
+  max_asset_weight: 0.35
+  max_gross_leverage: 1.0
+
+execution:
+  preset: next_session_close
+
+cash:
+  mode: zero
+
+costs:
+  base_bps: 5
+  stressed_bps: 15
+
+integrity:
+  strict_pit: true
+  require_asset_lifecycle: true
+  require_filtered_regimes: true

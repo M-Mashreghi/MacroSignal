@@ -1,0 +1,20 @@
+
+version: 1
+
+regime_component:
+  enabled: true
+
+surprise_component:
+  enabled: true
+  decay:
+    type: exponential
+    default_half_life_days: 10
+    max_age_days: 45
+
+trend_component:
+  enabled: true
+  lookback_days: 60
+
+combination:
+  method: weighted_sum
+  weights_selected_training_only: true

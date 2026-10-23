@@ -1,0 +1,3 @@
+series_id,reference_start,value,available_at,vintage_date,realtime_start,realtime_end
+TEST_SERIES,2026-08-01,100.0,2026-09-01T08:30:00-04:00,2026-09-01,2026-09-01,2026-09-30
+TEST_SERIES,2026-08-01,101.0,2026-10-01T08:30:00-04:00,2026-10-01,2026-10-01,9999-12-31

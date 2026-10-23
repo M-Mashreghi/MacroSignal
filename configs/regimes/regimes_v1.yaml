@@ -1,0 +1,26 @@
+
+version: 1
+
+models:
+  rule_based:
+    enabled: true
+
+  gmm:
+    enabled: true
+    candidate_states: [3, 4, 5]
+    selection:
+      training_only: true
+      criteria: [bic, stability, minimum_occupancy]
+    alignment:
+      enabled: true
+
+  hmm:
+    enabled: true
+    candidate_states: [3, 4, 5]
+    selection:
+      training_only: true
+      criteria: [bic, stability, minimum_occupancy]
+    probability_for_signals: filtered
+    smoothed_ex_post_only: true
+    alignment:
+      enabled: true

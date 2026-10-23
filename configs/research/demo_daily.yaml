@@ -1,0 +1,33 @@
+
+name: demo_daily_v3
+mode: free_research
+start_date: "2007-01-01"
+decision_frequency: daily
+
+macro_registry: configs/series/us_macro_v1.yaml
+release_map: configs/series/release_map_v1.yaml
+asset_universe: configs/assets/cross_asset_v1.yaml
+regime_config: configs/regimes/regimes_v1.yaml
+signal_config: configs/signals/signals_v1.yaml
+
+expectations:
+  mode: model_forecast
+  label_output_as: forecast_error
+
+pit:
+  strict: true
+  conservative_unknown_time_policy: inferred_eod
+
+ragged_edge:
+  include_age_features: true
+  enforce_staleness: true
+
+execution:
+  preset: next_session_close
+
+cash:
+  mode: zero
+
+costs:
+  base_bps: 5
+  stressed_bps: 15

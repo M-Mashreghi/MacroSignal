@@ -1,0 +1,2 @@
+release_id,release_name,reference_period,scheduled_at,actual_release_at,source_timezone,release_stage
+CPI,CPI,2026-09,2026-10-15T08:30:00-04:00,2026-10-15T08:30:00-04:00,America/New_York,initial

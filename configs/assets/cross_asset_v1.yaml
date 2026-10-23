@@ -1,0 +1,41 @@
+
+universe_version: 2
+frequency: daily
+
+assets:
+  - id: SPY
+    role: broad_us_equity
+    lifecycle_policy: provider_first_valid
+  - id: QQQ
+    role: growth_equity
+    lifecycle_policy: provider_first_valid
+  - id: SHY
+    role: short_treasury_proxy
+    lifecycle_policy: provider_first_valid
+  - id: TLT
+    role: long_treasury_proxy
+    lifecycle_policy: provider_first_valid
+  - id: TIP
+    role: inflation_linked_proxy
+    lifecycle_policy: provider_first_valid
+  - id: GLD
+    role: gold_proxy
+    lifecycle_policy: provider_first_valid
+  - id: UUP
+    role: usd_proxy
+    lifecycle_policy: provider_first_valid
+  - id: USO
+    role: oil_proxy
+    lifecycle_policy: provider_first_valid
+
+return_policy:
+  research_return: adjusted_close_to_adjusted_close
+  require_provider_adjustment_metadata: true
+
+cash:
+  mode: explicit_zero_or_configured_proxy
+  default_for_demo: zero
+
+policy:
+  demo_only: true
+  do_not_backfill_before_inception: true

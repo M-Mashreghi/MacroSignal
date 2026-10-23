@@ -1,0 +1,40 @@
+
+version: 1
+
+release_families:
+  CPI:
+    official_source: BLS
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    series_keys:
+      - headline_cpi
+      - core_cpi
+
+  EMPLOYMENT_SITUATION:
+    official_source: BLS
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    series_keys:
+      - payrolls
+      - unemployment
+
+  PCE:
+    official_source: BEA
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    series_keys:
+      - pce_price
+      - core_pce_price
+
+  GDP:
+    official_source: BEA
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    series_keys:
+      - real_gdp
+
+  FOMC_STATEMENT:
+    official_source: FEDERAL_RESERVE
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    series_keys: []
