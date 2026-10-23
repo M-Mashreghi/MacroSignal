@@ -13,7 +13,7 @@ Update only after verification.
 
 - [x] **Task 1.1** — Complete Python Package Scaffold & Development Tooling — Commit: `f4982b3` — GitHub: `pushed`
 - [x] **Task 1.2** — GitHub Remote & Per-Task Commit Workflow Baseline — Commit: `2e1ced4` — GitHub: `pushed`
-- [x] **Task 1.3** — Typed Configuration Loader & Environment Separation — Commit: `pending` — GitHub: `pending`
+- [x] **Task 1.3** — Typed Configuration Loader & Environment Separation — Commit: `fe7799f` — GitHub: `pushed`
 - [ ] **Task 1.4** — MacroObservation Domain Model — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.5** — AvailabilityStamp & ReleaseEvent Domain Models — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.6** — ExpectationObservation & Forecast Provenance Models — Commit: `—` — GitHub: `—`
