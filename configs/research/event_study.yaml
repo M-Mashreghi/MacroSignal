@@ -1,4 +1,7 @@
+kind: event_study
 name: macro_event_study_v2
+
+release_map: configs/series/release_map_v1.yaml
 
 release_families:
   - CPI

@@ -1,4 +1,5 @@
 
+kind: daily_research
 name: demo_daily_v3
 mode: free_research
 start_date: "2007-01-01"

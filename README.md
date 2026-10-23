@@ -207,6 +207,24 @@ ruff check .
 python scripts/validate_project.py
 ```
 
+## Configuration
+
+Committed research configs live in `configs/research/*.yaml`. Each declares a
+`kind` (`daily_research`, `walk_forward`, `event_study`) and references the
+series registry, release map, assets, regimes and signals configs by paths
+relative to the project root. `macrosignal.config.load_research_config` loads
+them into typed, frozen pydantic models; unknown fields, invalid references and
+policy violations (e.g. labelling model forecast error as market surprise, or
+smoothed HMM probabilities for signals) fail with actionable errors.
+
+```bash
+macrosignal config validate configs/research/demo_daily.yaml
+```
+
+Secrets and machine-specific settings never go in committed configs. They are
+read by `macrosignal.config.Settings` from `MACROSIGNAL_*` environment variables
+or a local git-ignored `.env` (see `.env.example`).
+
 ## Claude Code Workflow
 
 Every task:
