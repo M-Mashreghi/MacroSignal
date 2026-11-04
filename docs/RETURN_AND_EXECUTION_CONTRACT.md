@@ -154,3 +154,15 @@ without a price makes the returns into and out of it missing (listed in
 `missing_sessions`, never bridged). One-session moves above `max_abs_return`
 (default 35%) are flagged as suspected unadjusted corporate actions and can be
 made fatal with `reject_suspicious=True`.
+
+## Cash / Risk-Free Engine (Task 5.3)
+
+`macrosignal.portfolio.cash.cash_returns(spec, calendar, start, end, rates)`
+implements the declared `CashReturnSpec`: `zero` is exactly 0 per session;
+`proxy` accrues a short-rate series (annualized percent) as simple ACT/360
+interest over each `previous close -> close` period, using the latest rate
+whose `available_at` is at or before the period's start. Without such a rate
+the period is missing, never zero. Every period records rate, observation date,
+availability and day count. `risk_free_returns` applies the same engine to the
+`RiskFreeSpec` used by Sharpe-type metrics; `rates_from_macro` and
+`rates_from_curve` adapt daily macro observations or Treasury curve tenors.
