@@ -116,3 +116,16 @@ from its own release onwards). Thresholds come from each series'
 Employment Situation release known at `t` (actual releases only) and
 `overdue_features`: features not updated since that release, or missing, so an
 absent update is visible rather than silently carried.
+
+## Growth Pipeline (Task 3.5)
+
+`macrosignal.features.growth.build_growth_features(store, catalog, t)` builds
+GDP (`GDP` release family, quarterly) and activity features (e.g. industrial
+production, date-level timing) from the as-of view: at each `t` the GDP value is
+the estimate round public then (advance -> second -> third -> revision), and
+`qoq_annualized` compares it with the previous quarter's vintage public at `t`.
+Every feature keeps its reference period and release stage.
+`FeatureDecisionLog.record(feature_set)` stores a content hash per (family,
+decision time) and raises `DecisionOverwriteError` if a different feature set
+is recorded for an already-decided time, so later estimates can never rewrite
+an earlier historical decision.

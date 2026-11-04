@@ -47,8 +47,8 @@ Update only after verification.
 - [x] **Task 3.1** — Macro Series Registry Loader — Commit: `7d278bb` — GitHub: `pushed`
 - [x] **Task 3.2** — Macro Transformation Registry — Commit: `fc2ab3d` — GitHub: `pushed`
 - [x] **Task 3.3** — Inflation Feature Pipeline — Commit: `09ea3d3` — GitHub: `pushed`
-- [x] **Task 3.4** — Labor Feature Pipeline — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 3.5** — Growth / Activity Feature Pipeline — Commit: `—` — GitHub: `—`
+- [x] **Task 3.4** — Labor Feature Pipeline — Commit: `2082468` — GitHub: `pushed`
+- [x] **Task 3.5** — Growth / Activity Feature Pipeline — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 3.6** — Policy / Rates Feature Pipeline — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.7** — Yield-Curve Shape Features — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.8** — Training-Only Yield-Curve PCA — Commit: `—` — GitHub: `—`
