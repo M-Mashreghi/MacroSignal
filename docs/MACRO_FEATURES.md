@@ -81,3 +81,26 @@ listed (`SeriesRegistryError`) when: a transformation is unknown
 reference frequency; `stale_after_days` is shorter than one reference period;
 or a PIT-required series lacks a timing policy, declares one that contradicts
 its release family, or uses a provider without vintages.
+
+## Transformation Registry (Task 3.2)
+
+`macrosignal.features.transformations.TRANSFORMATIONS` defines, for each name,
+its formula, lag, accepted frequencies and output units:
+
+| name | formula | frequencies | units |
+|---|---|---|---|
+| `level` | x_t | all | input units |
+| `level_diff` | x_t - x_{t-1} | all | input units |
+| `mom_diff` | x_t - x_{t-1} | monthly | input units |
+| `mom_pct` | 100(x_t/x_{t-1} - 1) | monthly | `percent_mom` |
+| `qoq_pct` | 100(x_t/x_{t-1} - 1) | quarterly | `percent_qoq` |
+| `qoq_annualized` | 100((x_t/x_{t-1})^4 - 1) | quarterly | `percent_annualized` |
+| `yoy_pct` | 100(x_t/x_{t-k} - 1), k = 12 / 4 | monthly, quarterly | `percent_yoy` |
+
+`transform(observations, name, series_key=...)` works on one series' as-of
+view (one vintage per reference period). Outputs (`TransformedValue`) carry
+feature name/version, units, seasonal adjustment, frequency, release stage,
+input snapshot ids, `available_at = max(input availability)` and the worst
+input precision. Missing lag periods and non-positive bases produce no value
+(no interpolation), and mixed units / frequency / seasonal adjustment, mixed
+series or duplicate vintages raise `TransformationError`.
