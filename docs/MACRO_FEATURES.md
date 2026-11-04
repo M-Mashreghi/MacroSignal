@@ -156,3 +156,18 @@ computes explicit linear combinations from the latest curve date knowable at
 age, input legs and snapshot ids. A missing maturity, or inputs observed on
 different dates, makes the feature missing with a stated reason; nothing is
 interpolated or borrowed from another date.
+
+## Training-Only Curve PCA (Task 3.8)
+
+`macrosignal.features.curve_pca.fit_curve_pca(curves, curve=..., tenors=...,
+train_cutoff=..., n_components=..., fit_id=...)` uses only curve rows available
+at or before `train_cutoff` that have every requested tenor (incomplete dates
+are excluded and counted, never imputed), standardizes with training means and
+population standard deviations, extracts components by SVD with deterministic
+signs (first component: positive loading sum; later components: positive
+loading on the longest tenor), and returns a `FrozenCurvePCA` (means, scales,
+loadings, explained variance, training window, `params_hash`).
+`FrozenCurvePCA.transform` applies those frozen parameters to later curves.
+`tests/regression/test_curve_pca_training_only.py` shows that adding future
+rows changes neither the fitted parameters nor historical transforms; only a
+new cutoff (a new fit) does.
