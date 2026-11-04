@@ -114,3 +114,15 @@ results or states from another fit; `roll_forward` takes the next canonical
 descriptors from the aligned fit. The audit fields (`model_fit_id`,
 `raw_state_id`, `canonical_state_id`, `matching_distance`,
 `alignment_confidence`, `prior_fit_id`) are on `AlignmentResult`.
+
+## Diagnostics (Task 4.10)
+
+`macrosignal.regimes.diagnostics.regime_diagnostics(states, alignments,
+thresholds)` reports, from the chronological dominant canonical states and the
+refit alignment results: occupancy, spell counts and mean / max durations per
+state, the empirical transition matrix, refit stability (number of refits, OK /
+ambiguous / state-count-changed counts, min and mean alignment confidence) and
+per-state flags `rare` (< `min_occupancy`), `unstable` (mean duration <
+`min_mean_duration`) and `weakly_aligned` (min mapping confidence <
+`min_alignment_confidence`), with thresholds in `DiagnosticThresholds`.
+`report_tables()` and `to_canonical_json()` provide report-ready artifacts.
