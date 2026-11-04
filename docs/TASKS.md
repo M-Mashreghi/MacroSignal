@@ -17,8 +17,8 @@ Update only after verification.
 - [x] **Task 1.4** — MacroObservation Domain Model — Commit: `4cfc05d` — GitHub: `pushed`
 - [x] **Task 1.5** — AvailabilityStamp & ReleaseEvent Domain Models — Commit: `d345b26` — GitHub: `pushed`
 - [x] **Task 1.6** — ExpectationObservation & Forecast Provenance Models — Commit: `9efcaa9` — GitHub: `pushed`
-- [x] **Task 1.7** — MarketObservation & Asset Lifecycle Models — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 1.8** — Return / Execution Contract Models — Commit: `—` — GitHub: `—`
+- [x] **Task 1.7** — MarketObservation & Asset Lifecycle Models — Commit: `002378b` — GitHub: `pushed`
+- [x] **Task 1.8** — Return / Execution Contract Models — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 1.9** — ResearchSnapshot & ResearchRun Manifests — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.10** — Artifact Registry & Local Storage Layout — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.11** — Synthetic Point-in-Time Fixture Suite — Commit: `—` — GitHub: `—`

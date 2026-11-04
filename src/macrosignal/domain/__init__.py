@@ -6,6 +6,23 @@ from macrosignal.domain.availability import (
     AvailabilitySource,
     AvailabilityStamp,
 )
+from macrosignal.domain.execution import (
+    EXECUTION_PRESETS,
+    RETURN_CONVENTION_INPUTS,
+    AvailabilityViolation,
+    CashReturnMode,
+    CashReturnSpec,
+    DecisionTimeline,
+    ExecutionPreset,
+    ExecutionPresetName,
+    ExecutionPriceSpec,
+    ReconciliationPolicy,
+    ResearchReturnSpec,
+    ReturnExecutionContract,
+    RiskFreeMode,
+    RiskFreeSpec,
+    get_execution_preset,
+)
 from macrosignal.domain.expectation import (
     ConsensusExpectation,
     Expectation,
@@ -36,6 +53,21 @@ from macrosignal.domain.release_event import ReleaseEvent
 from macrosignal.domain.timezones import validate_iana_timezone
 
 __all__ = [
+    "EXECUTION_PRESETS",
+    "RETURN_CONVENTION_INPUTS",
+    "AvailabilityViolation",
+    "CashReturnMode",
+    "CashReturnSpec",
+    "DecisionTimeline",
+    "ExecutionPreset",
+    "ExecutionPresetName",
+    "ExecutionPriceSpec",
+    "ReconciliationPolicy",
+    "ResearchReturnSpec",
+    "ReturnExecutionContract",
+    "RiskFreeMode",
+    "RiskFreeSpec",
+    "get_execution_preset",
     "DATE_LEVEL_PRECISIONS",
     "FIELD_ADJUSTMENTS",
     "AdjustmentPolicy",

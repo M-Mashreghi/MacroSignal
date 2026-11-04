@@ -88,3 +88,32 @@ Use an explicit U.S. trading calendar:
 - early closes if relevant.
 
 Macro release calendars and market trading calendars are different objects.
+
+## Implementation (Task 1.8)
+
+Typed contracts live in `macrosignal.domain.execution` (all frozen, unknown
+fields rejected):
+
+- `ResearchReturnSpec(convention, price_field, adjustment_policy)` accepts only
+  the inputs listed in `RETURN_CONVENTION_INPUTS`:
+  `adjusted_close_to_adjusted_close` needs `adjusted_close` /
+  `split_and_dividend_adjusted`; `total_return_index` needs
+  `total_return_index` / `total_return`; `close_to_close_price_only` needs a
+  split-adjusted close (unadjusted closes would create split artifacts).
+- `ExecutionPriceSpec(field, adjustment_policy)` must be a tradable `open` or
+  `close` that is `unadjusted` or `split_adjusted`; dividend-adjusted values
+  were never traded and are rejected as fill prices.
+- `EXECUTION_PRESETS` defines `next_session_close`, `next_session_open` and
+  `same_day_close` (execution field, session offset, and the event the signal
+  must precede); `get_execution_preset()` rejects unknown names.
+- `CashReturnSpec` (`zero`, or `proxy` with a `proxy_series_id`) and
+  `RiskFreeSpec` (`zero`, `treasury_bill_proxy`, `documented_series`) make cash
+  and Sharpe risk-free assumptions explicit.
+- `ReturnExecutionContract` requires the execution price field to match the
+  preset, and requires an explicit `reconciliation` policy
+  (`research_returns_raw_fills_for_timing_and_costs`) whenever dividend-inclusive
+  research returns are combined with raw/split-adjusted fills.
+- `DecisionTimeline` stores `information_time <= signal_time <= decision_time <
+  execution_time <= mark_time` (no same-instant fill) and `check_inputs()`
+  raises `AvailabilityViolation` when any input's `available_at` is after the
+  information time.
