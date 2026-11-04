@@ -76,3 +76,18 @@ The daily macro state updates when:
 - a scheduled model refit occurs.
 
 Do not recompute old states using future revisions.
+
+## As-Of Features (Task 3.3)
+
+`macrosignal.features.as_of_features.build_family_features(store, catalog,
+family, t)` computes every configured transformation of a family from the
+series' as-of view at `t` and returns a `FeatureSet` of `AsOfFeature`s with
+value, units, seasonal adjustment, reference period, release stage,
+`available_at` and precision, `age_since_available = t - available_at`,
+`age_since_reference_days` (New York date of `t` minus the reference-period
+end), the series' `stale_after_days`, `stale = age_since_reference_days >
+stale_after_days`, feature version and input snapshot ids. A feature whose
+latest period cannot be transformed (no history yet, or a gap) is listed in
+`missing`; it never falls back silently to an older period.
+`macrosignal.features.inflation.build_inflation_features` applies this to the
+`inflation` family (CPI / PCE release families).

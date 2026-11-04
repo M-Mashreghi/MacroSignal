@@ -67,3 +67,66 @@ def endpoint_key(endpoint: str) -> str:
         "series/vintagedates": "vintage_dates",
         "release/dates": "release_dates",
     }.get(endpoint, "records")
+
+
+def make_observation(
+    series_id: str,
+    reference_start: Any,
+    reference_end: Any,
+    value: float,
+    available_at: datetime,
+    *,
+    stage: str = "initial",
+    frequency: str = "monthly",
+    units: str = "index",
+    seasonal_adjustment: str = "seasonally_adjusted",
+    source: str = "fred_alfred",
+    precision: str = "exact_timestamp",
+) -> Any:
+    """Synthetic MacroObservation for feature-pipeline tests."""
+    from macrosignal.domain import MacroObservation
+
+    return MacroObservation.model_validate(
+        {
+            "source": source,
+            "series_id": series_id,
+            "retrieved_at": datetime(2031, 1, 1, tzinfo=UTC),
+            "source_snapshot_id": f"snap_{series_id}_{reference_start}_{stage}",
+            "adapter_version": "fixture",
+            "release_stage": stage,
+            "reference_start": reference_start,
+            "reference_end": reference_end,
+            "value": value,
+            "units": units,
+            "frequency": frequency,
+            "seasonal_adjustment": seasonal_adjustment,
+            "availability": {"available_at": available_at, "precision": precision},
+        }
+    )
+
+
+def monthly_series(
+    series_id: str,
+    values: list[float],
+    *,
+    start: tuple[int, int] = (2025, 1),
+    release_day: int = 12,
+    release_time: tuple[int, int] = (8, 30),
+    **kw: Any,
+) -> list[Any]:
+    """Monthly initial prints released on ``release_day`` of the following month (ET)."""
+    import calendar as _cal
+    from datetime import date as _date
+    from zoneinfo import ZoneInfo
+
+    ny = ZoneInfo("America/New_York")
+    out = []
+    y, m = start
+    for v in values:
+        ref_start = _date(y, m, 1)
+        ref_end = _date(y, m, _cal.monthrange(y, m)[1])
+        ny_, nm = (y + 1, 1) if m == 12 else (y, m + 1)
+        released = datetime(ny_, nm, release_day, *release_time, tzinfo=ny)
+        out.append(make_observation(series_id, ref_start, ref_end, v, released, **kw))
+        y, m = ny_, nm
+    return out
