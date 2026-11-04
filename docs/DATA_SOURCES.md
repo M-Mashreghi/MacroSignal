@@ -146,3 +146,20 @@ groups ALFRED observation records into per-reference-date revision chains
 ordered by `realtime_start`, keeps ALFRED's `.` as an explicit missing value,
 and rejects overlapping real-time periods or periods that do not start on a
 known vintage. Vintage dates remain date-level availability evidence.
+
+## Initial Releases & Revisions (Task 2.5)
+
+`macrosignal.data.fred_observations.fetch_revision_history` queries
+`fred/series/observations` with `output_type=1` over
+`1776-07-04..9999-12-31` and turns every real-time period into a
+`MacroObservation`: the first published value of each reference date is
+`initial`, later vintages are `revision`, each with `vintage_date` /
+`realtime_start` / `realtime_end` and the snapshot id of the page it came from.
+`fetch_initial_releases` returns only initial prints (derived from the full
+history, or server-side via `output_type=4` when every record carries its own
+`realtime_start`; otherwise it fails instead of guessing). Records whose
+real-time period does not start on a known vintage (e.g. a "today's data"
+response) are rejected, so the current revised series can never stand in for
+an initial release. Availability is date-level: precision `release_date_only`,
+source `alfred_vintage_date`, placed conservatively at 23:59:59
+America/New_York on the vintage date.

@@ -30,8 +30,8 @@ Update only after verification.
 - [x] **Task 2.1** — HTTP Client, Retry & Raw Snapshot Layer — Commit: `d0dc890` — GitHub: `pushed`
 - [x] **Task 2.2** — FRED / ALFRED API Client — Commit: `e72d939` — GitHub: `pushed`
 - [x] **Task 2.3** — FRED Series Metadata Normalization — Commit: `fd5d6cd` — GitHub: `pushed`
-- [x] **Task 2.4** — ALFRED Vintage-Date Retrieval — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 2.5** — Initial Release & Revision Observation Retrieval — Commit: `—` — GitHub: `—`
+- [x] **Task 2.4** — ALFRED Vintage-Date Retrieval — Commit: `39a754b` — GitHub: `pushed`
+- [x] **Task 2.5** — Initial Release & Revision Observation Retrieval — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 2.6** — Release-Family / Series Mapping Registry — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.7** — BLS Release Calendar Adapter — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.8** — BEA Release Schedule & Estimate-Stage Adapter — Commit: `—` — GitHub: `—`

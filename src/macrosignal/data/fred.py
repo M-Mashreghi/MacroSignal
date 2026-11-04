@@ -60,6 +60,8 @@ class FredResult:
     records: list[Any]
     snapshot_ids: tuple[str, ...]
     envelope: dict[str, Any] = field(default_factory=dict)
+    #: Raw snapshot id of the page each record came from (parallel to ``records``).
+    record_snapshot_ids: tuple[str, ...] = ()
 
 
 def configured_series_ids(registry: MacroSeriesRegistry) -> list[str]:
@@ -113,13 +115,19 @@ class FredClient:
         records = payload.get(key)
         if not isinstance(records, list):
             raise ResponseSchemaError(f"FRED {endpoint}: missing list field {key!r}")
-        return FredResult(records=records, snapshot_ids=(snap,), envelope=_envelope(payload, key))
+        return FredResult(
+            records=records,
+            snapshot_ids=(snap,),
+            envelope=_envelope(payload, key),
+            record_snapshot_ids=(snap,) * len(records),
+        )
 
     def _paginated(
         self, endpoint: str, key: str, params: Mapping[str, Any], limit: int
     ) -> FredResult:
         records: list[Any] = []
         snapshots: list[str] = []
+        record_snaps: list[str] = []
         offset = 0
         envelope: dict[str, Any] = {}
         while True:
@@ -131,6 +139,7 @@ class FredClient:
                 raise ResponseSchemaError(f"FRED {endpoint}: missing {key!r} list or count")
             envelope = _envelope(payload, key)
             records.extend(page)
+            record_snaps.extend([snap] * len(page))
             offset += len(page)
             if offset >= count:
                 break
@@ -140,7 +149,12 @@ class FredClient:
                 )
         if len(records) != envelope.get("count", len(records)):
             raise ResponseSchemaError(f"FRED {endpoint}: record count mismatch")
-        return FredResult(records=records, snapshot_ids=tuple(snapshots), envelope=envelope)
+        return FredResult(
+            records=records,
+            snapshot_ids=tuple(snapshots),
+            envelope=envelope,
+            record_snapshot_ids=tuple(record_snaps),
+        )
 
     # --- endpoints ----------------------------------------------------------------------
     def series(
