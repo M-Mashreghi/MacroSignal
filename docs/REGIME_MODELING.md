@@ -75,3 +75,18 @@ window, cutoff and config (`params_hash` for audit). Rows after the cutoff
 cannot change the fit. `GmmFit.posterior_state(t, row)` returns raw component
 probabilities as an unaligned `mixture_posterior` `RegimeObservation`;
 `fit_gmm_candidates` fits each configured state count.
+
+## Model C Implementation (Task 4.4)
+
+`macrosignal.regimes.hmm.fit_hmm(frame, HmmConfig(features, n_states, seed,
+...), cutoff, fit_id)` fits a full-covariance Gaussian HMM by Baum-Welch with a
+scaled forward-backward pass in numpy (no optional dependency) on standardized
+training-window rows, initialized deterministically from a seeded Gaussian
+mixture with raw states ordered by the first feature's mean. `HmmFit` stores
+the transition matrix, initial distribution, state means (standardized and
+original), covariances, training occupancy, log-likelihood, BIC, cutoff, seed,
+iterations and convergence (`params_hash`). `filtered_states(frame)` emits
+contemporaneous `filtered` probabilities for decision times at or after the
+cutoff, each computed from rows up to that time only;
+`smoothed_diagnostics(frame)` emits future-informed `smoothed` probabilities
+that are always `diagnostic=True`.

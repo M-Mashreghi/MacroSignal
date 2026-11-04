@@ -63,8 +63,8 @@ Update only after verification.
 
 - [x] **Task 4.1** — Transparent Rule-Based Macro Quadrants — Commit: `d1e5a61` — GitHub: `pushed`
 - [x] **Task 4.2** — Regime State / Probability Data Model — Commit: `33b93a3` — GitHub: `pushed`
-- [x] **Task 4.3** — Gaussian Mixture Regime Baseline — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 4.4** — Hidden Markov Model Regime Baseline — Commit: `—` — GitHub: `—`
+- [x] **Task 4.3** — Gaussian Mixture Regime Baseline — Commit: `d62d75e` — GitHub: `pushed`
+- [x] **Task 4.4** — Hidden Markov Model Regime Baseline — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 4.5** — Filtered-vs-Smoothed Probability Guard — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.6** — Latent State Canonicalization / Alignment — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.7** — Regime Probability Uncertainty & Low-Confidence Policy — Commit: `—` — GitHub: `—`
