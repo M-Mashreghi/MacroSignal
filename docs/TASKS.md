@@ -62,8 +62,8 @@ Update only after verification.
 ## Phase 4 — Regime Models, State Alignment & Event Studies
 
 - [x] **Task 4.1** — Transparent Rule-Based Macro Quadrants — Commit: `d1e5a61` — GitHub: `pushed`
-- [x] **Task 4.2** — Regime State / Probability Data Model — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 4.3** — Gaussian Mixture Regime Baseline — Commit: `—` — GitHub: `—`
+- [x] **Task 4.2** — Regime State / Probability Data Model — Commit: `33b93a3` — GitHub: `pushed`
+- [x] **Task 4.3** — Gaussian Mixture Regime Baseline — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 4.4** — Hidden Markov Model Regime Baseline — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.5** — Filtered-vs-Smoothed Probability Guard — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.6** — Latent State Canonicalization / Alignment — Commit: `—` — GitHub: `—`

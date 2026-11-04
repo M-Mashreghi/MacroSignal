@@ -60,3 +60,18 @@ from values at earlier decision times, with `min_history`. Missing inputs,
 stale inputs (unless `allow_stale`) and insufficient history give no label
 with an explicit status. Each `QuadrantState` reports the label, input values,
 their availability and the thresholds used.
+
+## Model B Implementation (Task 4.3)
+
+`macrosignal.regimes.training.training_matrix(frame, features, cutoff)` takes
+complete-case rows of an `AsOfFeatureFrame` with decision time at or before the
+cutoff (incomplete rows excluded and counted); `FrozenScaler` stores training
+means / population standard deviations. `macrosignal.regimes.gmm.fit_gmm(frame,
+GmmConfig(features, n_components, seed, n_init, ...), cutoff, fit_id)` fits a
+full-covariance Gaussian mixture on the standardized training rows with a
+fixed seed and stores weights, centroids (standardized and original units),
+covariances, training occupancy, BIC, log-likelihood, convergence, training
+window, cutoff and config (`params_hash` for audit). Rows after the cutoff
+cannot change the fit. `GmmFit.posterior_state(t, row)` returns raw component
+probabilities as an unaligned `mixture_posterior` `RegimeObservation`;
+`fit_gmm_candidates` fits each configured state count.
