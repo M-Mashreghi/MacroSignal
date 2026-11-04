@@ -91,3 +91,20 @@ latest period cannot be transformed (no history yet, or a gap) is listed in
 `missing`; it never falls back silently to an older period.
 `macrosignal.features.inflation.build_inflation_features` applies this to the
 `inflation` family (CPI / PCE release families).
+
+## AsOfFeatureFrame (Task 3.9)
+
+`macrosignal.features.frame.build_feature_frame(decision_times, sources)`
+builds a long-format panel of `PanelCell`s: for every decision time and feature,
+value, `available_at`, precision, reference period or observation date,
+`age_since_available`, `age_since_reference_days`, `stale`, source kind
+(`macro`, `rates`, `curve_shape`) and `updated_since_previous` (information
+that became available after the previous decision time, i.e. a fresh-release
+indicator). Cells are computed as of each decision time, so a carried value is
+the last known state with its original availability and a growing age; missing
+features are listed per decision time. Adapters convert macro `FeatureSet`s,
+rate features and curve-shape features (the curve-shape staleness threshold is
+passed by the caller). The builder rejects lookahead cells, duplicates, cells
+for another time, and non-increasing or naive decision times.
+`to_records()` / `to_dataframe()` expose the panel, staleness included, to
+models and the dashboard.
