@@ -74,6 +74,16 @@ Therefore:
 - do not use that day's curve in a morning decision,
 - resolve its availability conservatively as late-day/end-of-day.
 
+Adapter (Task 2.10): `macrosignal.data.treasury` parses the daily par
+(nominal) and real yield-curve CSVs into `YieldCurvePoint`s with canonical
+tenors (`1M`, `10Y`, ...) and month counts. Each point is stamped
+`inferred_eod` / `conservative_inference` at 23:59:59 America/New_York on its
+observation date, so `latest_curve_as_of(t)` never returns a same-day curve to
+a morning (or afternoon) decision. Blank / `N/A` cells are explicit gaps,
+unknown columns are listed in `unmapped_columns`, and duplicate or future
+dates are rejected. `fetch_treasury_curve(http, curve, year)` uses Treasury's
+yearly CSV download (URL template overridable).
+
 ## Market Data
 
 Use a provider-neutral adapter.
