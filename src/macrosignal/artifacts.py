@@ -27,6 +27,7 @@ import os
 import re
 import shutil
 import tempfile
+import time
 from collections.abc import Mapping
 from datetime import datetime
 from enum import StrEnum
@@ -220,7 +221,7 @@ class ArtifactRegistry:
                 dest = staging / _validate_relpath(name)
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 dest.write_bytes(data)
-            os.replace(staging, target)
+            _replace_with_retry(staging, target)
         except BaseException:
             shutil.rmtree(staging, ignore_errors=True)
             raise
@@ -261,6 +262,18 @@ class ArtifactRegistry:
         except FileNotFoundError:
             return False
         return content_hash(files) == record.content_hash
+
+
+def _replace_with_retry(src: Path, dst: Path, attempts: int = 5) -> None:
+    """``os.replace`` that tolerates transient Windows sharing locks (AV / indexer)."""
+    for attempt in range(attempts):
+        try:
+            os.replace(src, dst)
+            return
+        except PermissionError:
+            if attempt == attempts - 1 or dst.exists():
+                raise
+            time.sleep(0.05 * (attempt + 1))
 
 
 def _check_id(value: str) -> None:

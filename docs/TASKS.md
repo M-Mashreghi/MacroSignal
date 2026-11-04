@@ -20,8 +20,8 @@ Update only after verification.
 - [x] **Task 1.7** — MarketObservation & Asset Lifecycle Models — Commit: `002378b` — GitHub: `pushed`
 - [x] **Task 1.8** — Return / Execution Contract Models — Commit: `c53a78a` — GitHub: `pushed`
 - [x] **Task 1.9** — ResearchSnapshot & ResearchRun Manifests — Commit: `f38b4ba` — GitHub: `pushed`
-- [x] **Task 1.10** — Artifact Registry & Local Storage Layout — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 1.11** — Synthetic Point-in-Time Fixture Suite — Commit: `—` — GitHub: `—`
+- [x] **Task 1.10** — Artifact Registry & Local Storage Layout — Commit: `eee1967` — GitHub: `pushed`
+- [x] **Task 1.11** — Synthetic Point-in-Time Fixture Suite — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 1.12** — Research Protocol & Hypothesis Registry — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.13** — Project Validation CLI & Repository Health Check — Commit: `—` — GitHub: `—`
 
