@@ -6,6 +6,17 @@ from macrosignal.domain.availability import (
     AvailabilitySource,
     AvailabilityStamp,
 )
+from macrosignal.domain.expectation import (
+    ConsensusExpectation,
+    Expectation,
+    ExpectationChronologyError,
+    ExpectationType,
+    ModelForecast,
+    ProxyExpectation,
+    SurpriseMode,
+    check_pre_release,
+    parse_expectation,
+)
 from macrosignal.domain.macro_observation import (
     Frequency,
     MacroObservation,
@@ -19,9 +30,18 @@ __all__ = [
     "AvailabilityPrecision",
     "AvailabilitySource",
     "AvailabilityStamp",
+    "ConsensusExpectation",
+    "Expectation",
+    "ExpectationChronologyError",
+    "ExpectationType",
     "Frequency",
     "MacroObservation",
+    "ModelForecast",
+    "ProxyExpectation",
     "ReleaseEvent",
     "ReleaseStage",
     "SeasonalAdjustment",
+    "SurpriseMode",
+    "check_pre_release",
+    "parse_expectation",
 ]

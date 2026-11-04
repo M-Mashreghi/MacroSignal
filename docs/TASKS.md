@@ -15,8 +15,8 @@ Update only after verification.
 - [x] **Task 1.2** — GitHub Remote & Per-Task Commit Workflow Baseline — Commit: `2e1ced4` — GitHub: `pushed`
 - [x] **Task 1.3** — Typed Configuration Loader & Environment Separation — Commit: `fe7799f` — GitHub: `pushed`
 - [x] **Task 1.4** — MacroObservation Domain Model — Commit: `4cfc05d` — GitHub: `pushed`
-- [x] **Task 1.5** — AvailabilityStamp & ReleaseEvent Domain Models — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 1.6** — ExpectationObservation & Forecast Provenance Models — Commit: `—` — GitHub: `—`
+- [x] **Task 1.5** — AvailabilityStamp & ReleaseEvent Domain Models — Commit: `d345b26` — GitHub: `pushed`
+- [x] **Task 1.6** — ExpectationObservation & Forecast Provenance Models — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 1.7** — MarketObservation & Asset Lifecycle Models — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.8** — Return / Execution Contract Models — Commit: `—` — GitHub: `—`
 - [ ] **Task 1.9** — ResearchSnapshot & ResearchRun Manifests — Commit: `—` — GitHub: `—`

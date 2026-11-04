@@ -112,6 +112,20 @@ model_version
 source_snapshot_id
 ```
 
+Implemented in `macrosignal.domain.expectation` (Task 1.6) as three frozen,
+distinct types selected by the `expectation_type` discriminator
+(`parse_expectation`): `ConsensusExpectation` (`consensus`), `ModelForecast`
+(`model_forecast`, additionally requires `model_id`, `model_version`,
+`training_cutoff <= forecast_created_at`, optional `input_snapshot_ids`) and
+`ProxyExpectation` (`proxy`, requires `proxy_method`). The reference period is
+`reference_start` / `reference_end`; `units` is required. `forecast_created_at`
+and `availability` are required, timezone-aware, and availability may not precede
+creation. `check_pre_release(expectation, release, mode)` enforces the surprise
+mode (`market_surprise` accepts only consensus, `forecast_error` only model
+forecasts, `proxy_surprise` only proxies), requires availability strictly before
+the *actual* release time (and a model's `training_cutoff` strictly before it),
+and checks release id / reference period against a `ReleaseEvent`.
+
 ## AsOfFeature
 
 ```text
