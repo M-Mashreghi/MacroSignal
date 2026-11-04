@@ -96,3 +96,21 @@ raw / canonical state counts; hard labels may not carry vectors. `smoothed`
 observations need `fit_cutoff <= as_of`, and aligned latent states need an
 alignment confidence. `require_live_states()` is the gate for signal and
 backtest code: it rejects diagnostic, future-informed and unaligned states.
+
+## Implementation (Task 4.6)
+
+`macrosignal.regimes.alignment`: `bootstrap_canonical(fit, ...)` names the
+first fit's states by the quadrant of their standardized growth / inflation
+means (two states in one quadrant is an error). `align_states(fit_id,
+means_original, canonical)` matches new state centroids to the canonical
+descriptors with a deterministic Hungarian assignment on scale-normalized
+Euclidean distance, storing per state `matching_distance` and
+`alignment_confidence = 1 - d_assigned / d_second_best`; mappings below
+`min_confidence` (default 0.3) or above `max_distance` are flagged
+`ambiguous`, and a different state count gives status `state_count_changed`
+with no mapping. `apply_alignment(states, result)` adds canonical ids /
+probabilities (confidence = minimum mapping confidence) and refuses non-OK
+results or states from another fit; `roll_forward` takes the next canonical
+descriptors from the aligned fit. The audit fields (`model_fit_id`,
+`raw_state_id`, `canonical_state_id`, `matching_distance`,
+`alignment_confidence`, `prior_fit_id`) are on `AlignmentResult`.
