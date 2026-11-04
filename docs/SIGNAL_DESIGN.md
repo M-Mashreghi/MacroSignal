@@ -65,3 +65,17 @@ forward window ended by the training cutoff, with a minimum sample per cell
 (fewer samples give preference 0 and a note). A learned map fitted after the
 decision time is refused. Each score carries its per-regime decomposition, the
 raw score and the confidence weight applied.
+
+## Surprise Score with Decay (Task 5.6)
+
+`macrosignal.signals.surprise_score.surprise_scores(standardized,
+sensitivities, decay, t, assets, mode)` computes
+`score_a = sum_f beta[f, a] x z_f x 0.5^(age_f / half_life)` from each
+factor's latest standardized surprise released by `t` (a newer release
+replaces the older one), with zero weight beyond `max_age_days`.
+`DecayPolicy.from_config` reads `surprise_component.decay` from
+`configs/signals/signals_v1.yaml` (exponential, half-life 10 days, max age 45).
+All inputs must share one surprise mode, which labels the score
+(`market_surprise` / `forecast_error`); factors without a usable z are listed
+as missing (never imputed); each score carries per-factor contributions with
+release id, age, z, decay and beta.
