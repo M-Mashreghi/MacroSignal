@@ -107,3 +107,23 @@ vintage became available, never a later revision. The expectation comes from
 `ExpectationService` at the actual release time. Without a valid expectation
 the status is `missing_expectation` (no surprise value); without the actual,
 `missing_actual`. Units of actual and expectation must agree.
+
+## PIT Standardization & Composites (Task 3.14)
+
+`macrosignal.surprises.standardize.standardize_surprises(records, policy)`
+standardizes one feature / one mode at a time with
+`z_k = (raw_k - center) / scale(prior computed surprises)` where only releases
+strictly before `k` enter (expanding, or the last `window`). Policy:
+`min_history` (fewer priors -> `insufficient_history`, no z), `scale_method`
+`std` (sample) or `mad` (1.4826 x MAD), `demean` (default off, so
+z = raw / prior scale as specified above), and the outlier rule `winsorize_z`
+(clip |z|, flag `clipped`; raw surprises never change). Zero scale or a missing
+raw surprise gives no z.
+
+`CompositeSpec(name, members=((feature, weight), ...), mode, max_age_days,
+min_members)` declares fixed positive weights; `composite_as_of(spec,
+standardized, t)` takes each member's latest z released by `t` and no older
+than `max_age_days`, returns the weighted average when at least `min_members`
+contribute, and lists contributions (release id, z, weight) and missing members.
+All inputs must share the spec's mode, so market surprises and forecast errors
+are never mixed.
