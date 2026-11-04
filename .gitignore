@@ -20,10 +20,12 @@ data/raw/*
 data/cache/*
 data/processed/*
 data/snapshots/*
+data/registry/*
 !data/raw/.gitkeep
 !data/cache/.gitkeep
 !data/processed/.gitkeep
 !data/snapshots/.gitkeep
+!data/registry/.gitkeep
 
 reports/runs/*
 reports/figures/*
