@@ -129,3 +129,18 @@ Every feature keeps its reference period and release stage.
 decision time) and raises `DecisionOverwriteError` if a different feature set
 is recorded for an already-decided time, so later estimates can never rewrite
 an earlier historical decision.
+
+## Policy / Rates Pipeline (Task 3.6)
+
+`macrosignal.features.policy_rates.build_policy_rates_features(store, catalog,
+t, curves=..., meetings=..., rates_stale_after_days=...)` returns three
+separately timed parts: `policy` (the registry's `policy` family, e.g.
+`fed_funds` level / change via the as-of engine); `rates` (selected tenors,
+default 3M / 2Y / 10Y, of each Treasury curve from the latest curve knowable at
+`t`, with observation date, end-of-day availability, age and a stale flag whose
+threshold the caller must pass from configuration; absent tenors are listed in
+`missing_rates`); and an `FomcMarker` (last *actually released* statement, next
+*scheduled* statement, days since / until, whether a statement was released
+earlier on `t`'s New York date, calendar snapshot id). Because curves are
+end-of-day, a morning decision on a macro-release day sees the 08:30 macro
+release but still the previous day's curve. No policy surprise is computed.
