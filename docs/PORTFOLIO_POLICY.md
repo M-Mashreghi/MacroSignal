@@ -52,3 +52,16 @@ last `lookback` sessions, on complete-case rows; assets with fewer than
 `sample`, `ledoit_wolf` (shrinkage baseline, default) and `ewma` (half-life).
 Estimates are annualized (`periods_per_year`, default 252) and record the
 estimation window, number of observations, method, shrinkage and fit time.
+
+## Target Weights & Baselines (Task 5.9)
+
+`macrosignal.portfolio.allocation.TargetWeights` is the common output of every
+method: weights per tradable asset, an explicit `cash_weight` (asset weights
+plus cash sum to 1, all finite), the `CashReturnSpec` that cash earns, the
+method and notes. Baselines: `equal_weight(universe, cash)` (1/N over the
+assets tradable on the date; all cash if none) and `static_allocation(universe,
+StaticAllocationSpec, cash)` (declared non-negative weights summing to at most 1;
+weights of assets not yet tradable go to cash by default or are redistributed
+pro rata with `unavailable_policy: renormalize`, with notes either way).
+`RebalanceSchedule(frequency)` lists daily, weekly (first session of each ISO
+week) or monthly (first session of each month) rebalance sessions.
