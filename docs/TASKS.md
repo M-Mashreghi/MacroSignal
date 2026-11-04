@@ -83,8 +83,8 @@ Update only after verification.
 - [x] **Task 5.3** — Cash / Risk-Free Return Engine — Commit: `23280af` — GitHub: `pushed`
 - [x] **Task 5.4** — Ex-Ante Volatility & Covariance Estimation — Commit: `cb31f79` — GitHub: `pushed`
 - [x] **Task 5.5** — Regime-Based Asset Score — Commit: `6907aa0` — GitHub: `pushed`
-- [x] **Task 5.6** — Surprise / Forecast-Error Score with Decay — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 5.7** — Trend Guardrail Signal — Commit: `—` — GitHub: `—`
+- [x] **Task 5.6** — Surprise / Forecast-Error Score with Decay — Commit: `03fa611` — GitHub: `pushed`
+- [x] **Task 5.7** — Trend Guardrail Signal — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 5.8** — Combined Transparent Signal Model — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.9** — Equal-Weight & Static Allocation Baselines — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.10** — Long / Flat Signal Portfolio — Commit: `—` — GitHub: `—`

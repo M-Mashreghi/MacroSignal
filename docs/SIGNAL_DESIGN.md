@@ -79,3 +79,14 @@ All inputs must share one surprise mode, which labels the score
 (`market_surprise` / `forecast_error`); factors without a usable z are listed
 as missing (never imputed); each score carries per-factor contributions with
 release id, age, z, decay and beta.
+
+## Trend Guardrail (Task 5.7)
+
+`macrosignal.signals.trend.trend_signals(returns, decision_session,
+TrendSettings)` compounds each asset's research returns of sessions strictly
+before the decision session within the last `lookback_days` calendar days
+(`trend_component.lookback_days`, 60 in `signals_v1.yaml`), i.e. information up
+to the previous close, and reports direction +1 / -1 / 0. Fewer than
+`min_observations` returns gives status `missing` (no inferred direction); a
+disabled component reports `disabled` for every asset so the trend can be
+ablated. Each signal records its window bounds and the number of returns used.
