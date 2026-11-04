@@ -75,3 +75,16 @@ equally, scaled to `max_gross`, and capped at `max_weight`; capped excess is
 held in cash, not redistributed. Scores for non-tradable assets are ignored
 with a note, and all unallocated capital is cash earning the declared
 `CashReturnSpec`.
+
+## Volatility Targeting (Task 5.11)
+
+`macrosignal.portfolio.vol_target.vol_target(base, estimate, VolTargetSettings)`
+scales the risky part of a base allocation by `target_vol / sigma_base`, where
+`sigma_base` is the ex-ante volatility from the covariance estimate fitted at
+the rebalance (estimates from later sessions are refused). The applied scale is
+capped by `max_scale` and gross exposure by `max_gross` (1.0 = no leverage);
+uninvested capital is cash. If a held asset has no estimate (or volatility is
+zero) the safe `fallback` keeps base weights unscaled (`unscaled`, default) or
+moves everything to cash (`cash`). `VolTargetDiagnostics` records target, base
+and final ex-ante volatility, raw / applied scale, caps, fallback and the
+estimate's fit time and window.
