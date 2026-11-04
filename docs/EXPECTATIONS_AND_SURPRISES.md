@@ -127,3 +127,19 @@ than `max_age_days`, returns the weighted average when at least `min_members`
 contribute, and lists contributions (release id, z, weight) and missing members.
 All inputs must share the spec's mode, so market surprises and forecast errors
 are never mixed.
+
+### Default Composite Weights (a-priori, untuned)
+
+`configs/signals/composite_surprise_v1.yaml` (variant
+`composite_surprise_equal_v1`, typed as `CompositeSurpriseConfig`) is the
+committed default: equal weights across inflation, labor and growth (1/3 each)
+and equal weights within each family (unemployment enters with sign -1 so a
+positive composite always means stronger-than-expected data). The weights were
+fixed a priori, never fitted or selected on data (`tuned_on_data: false`), so
+they carry no selection bias. `alternatives_count_as_variants: true`: any other
+weighting must be a new variant file and is counted as an additional tested
+configuration in the research search registry. Composites are built per
+surprise mode (`family_specs(config, mode)`); `macro_composite` combines family
+values with the declared weights, re-normalizing over available families and
+requiring `min_families`; `check_against_catalog` verifies member features
+against the series registry.

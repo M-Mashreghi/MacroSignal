@@ -154,6 +154,12 @@ class CompositeSpec:
     mode: SurpriseMode
     max_age_days: int
     min_members: int = 1
+    #: Optional orientation per member (+1 / -1), e.g. -1 for unemployment so that a
+    #: positive composite always means "stronger than expected". Default +1.
+    signs: tuple[tuple[str, int], ...] = ()
+
+    def sign_of(self, feature: str) -> int:
+        return dict(self.signs).get(feature, 1)
 
     def __post_init__(self) -> None:
         names = [m for m, _ in self.members]
@@ -163,6 +169,9 @@ class CompositeSpec:
             raise ValueError("composite weights must be positive")
         if not 1 <= self.min_members <= len(self.members):
             raise ValueError("min_members must be between 1 and the number of members")
+        for feature, sign in self.signs:
+            if feature not in names or sign not in (-1, 1):
+                raise ValueError("signs must be +1/-1 for declared members")
 
 
 class CompositeContribution(BaseModel):
@@ -173,6 +182,7 @@ class CompositeContribution(BaseModel):
     release_at: AwareDatetime
     z: float
     weight: float
+    sign: int = 1
 
 
 class CompositeValue(BaseModel):
@@ -213,12 +223,13 @@ def composite_as_of(
                 release_at=latest.release_at,
                 z=latest.z,
                 weight=weight,
+                sign=spec.sign_of(feature),
             )
         )
     value = None
     if len(contributions) >= spec.min_members:
         total = sum(c.weight for c in contributions)
-        value = sum(c.weight * c.z for c in contributions) / total
+        value = sum(c.weight * c.sign * c.z for c in contributions) / total
     return CompositeValue(
         name=spec.name,
         mode=spec.mode,

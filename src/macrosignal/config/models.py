@@ -265,6 +265,70 @@ class SignalConfig(StrictModel):
     combination: SignalCombinationSpec
 
 
+# --- configs/signals/composite_surprise_*: composite surprise factors ---------------
+
+
+class CompositeMemberSpec(StrictModel):
+    feature: Annotated[str, Field(pattern=r"^[a-z][a-z0-9_]*__[a-z][a-z0-9_]*$")]
+    weight: PositiveFloat
+    sign: Literal[1, -1] = 1
+
+
+class CompositeFamilySpec(StrictModel):
+    max_age_days: PositiveInt
+    min_members: PositiveInt = 1
+    members: list[CompositeMemberSpec] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _check(self) -> CompositeFamilySpec:
+        _require_unique([m.feature for m in self.members], "composite members")
+        if self.min_members > len(self.members):
+            raise ValueError("min_members exceeds the number of members")
+        return self
+
+
+class MacroCompositeSpec(StrictModel):
+    name: Identifier
+    min_families: PositiveInt
+    weights: dict[Identifier, PositiveFloat] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _check(self) -> MacroCompositeSpec:
+        if abs(sum(self.weights.values()) - 1.0) > 1e-6:
+            raise ValueError("macro composite weights must sum to 1")
+        if self.min_families > len(self.weights):
+            raise ValueError("min_families exceeds the number of families")
+        return self
+
+
+class CompositeSurpriseConfig(StrictModel):
+    version: PositiveInt
+    variant_id: Identifier
+    weighting: Literal["equal_a_priori", "declared_a_priori", "training_selected"]
+    tuned_on_data: bool
+    alternatives_count_as_variants: Literal[True]
+    modes: list[Literal["market_surprise", "forecast_error", "proxy_surprise"]] = Field(
+        min_length=1
+    )
+    families: dict[Identifier, CompositeFamilySpec] = Field(min_length=1)
+    macro_composite: MacroCompositeSpec
+
+    @model_validator(mode="after")
+    def _check(self) -> CompositeSurpriseConfig:
+        problems: list[str] = []
+        if self.weighting != "training_selected" and self.tuned_on_data:
+            problems.append("a-priori weighting cannot be tuned_on_data")
+        if self.weighting == "training_selected" and not self.tuned_on_data:
+            problems.append("training_selected weighting must declare tuned_on_data: true")
+        unknown = sorted(set(self.macro_composite.weights) - set(self.families))
+        if unknown:
+            problems.append(f"macro composite weights reference unknown families {unknown}")
+        _require_unique(list(self.modes), "modes")
+        if problems:
+            raise ValueError("; ".join(problems))
+        return self
+
+
 # --- configs/research/*: research run configurations ----------------------------
 
 

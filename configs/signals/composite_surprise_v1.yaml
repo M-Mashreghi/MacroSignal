@@ -1,0 +1,49 @@
+# Composite surprise factors v1 — A-PRIORI, UNTUNED DEFAULT.
+#
+# Weights were fixed before looking at any data: equal weights across the three
+# macro families (inflation, labor, growth = 1/3 each) and equal weights within
+# each family. They were NOT fitted, optimized or selected on any sample, so they
+# carry no selection bias. Any alternative weighting must be registered as a new
+# variant (new variant_id / file) and counts as an additional tested
+# configuration in the research search registry.
+#
+# Composites are built separately per surprise mode: market surprises
+# (consensus-based) and model forecast errors are never mixed.
+# max_age_days per family follows the series registry staleness thresholds.
+version: 1
+variant_id: composite_surprise_equal_v1
+weighting: equal_a_priori
+tuned_on_data: false
+alternatives_count_as_variants: true
+modes: [market_surprise, forecast_error]
+
+families:
+  inflation:
+    max_age_days: 50
+    min_members: 1
+    members:
+      - {feature: headline_cpi__mom_pct, weight: 1.0}
+      - {feature: core_cpi__mom_pct, weight: 1.0}
+      - {feature: pce_price__mom_pct, weight: 1.0}
+      - {feature: core_pce_price__mom_pct, weight: 1.0}
+  labor:
+    max_age_days: 45
+    min_members: 1
+    members:
+      - {feature: payrolls__mom_diff, weight: 1.0}
+      # Higher-than-expected unemployment is weaker labor news: sign -1.
+      - {feature: unemployment__mom_diff, weight: 1.0, sign: -1}
+  growth:
+    max_age_days: 150
+    min_members: 1
+    members:
+      - {feature: real_gdp__qoq_annualized, weight: 1.0}
+      - {feature: industrial_production__mom_pct, weight: 1.0}
+
+macro_composite:
+  name: macro_surprise_equal
+  min_families: 2
+  weights:
+    inflation: 0.333333333333
+    labor: 0.333333333333
+    growth: 0.333333333334
