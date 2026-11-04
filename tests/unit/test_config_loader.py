@@ -180,7 +180,7 @@ def test_duplicate_series_keys_rejected(tmp_path: Path) -> None:
 
 
 def test_invalid_timezone_rejected(project: Path) -> None:
-    rmap = project / "configs/series/release_map_v1.yaml"
+    rmap = project / "configs/series/release_map_v2.yaml"
     data = _read(rmap)
     data["release_families"]["CPI"]["source_timezone"] = "Eastern Standard"
     _write(rmap, data)

@@ -48,6 +48,9 @@ AvailabilityPrecision = Literal[
     "inferred_eod",
     "unknown",
 ]
+ReleaseStageName = Literal[
+    "initial", "advance", "second", "third", "revision", "benchmark_revision"
+]
 ExecutionPreset = Literal["next_session_close", "next_session_open", "same_day_close"]
 
 
@@ -100,6 +103,10 @@ class ReleaseFamilySpec(StrictModel):
     source_timezone: NonEmptyStr
     default_precision: AvailabilityPrecision
     series_keys: list[Identifier]
+    # Reference-period rules (release_map v2+; optional so v1 stays valid).
+    reference_frequency: Literal["monthly", "quarterly"] | None = None
+    release_stages: list[ReleaseStageName] = Field(default_factory=list)
+    max_release_lag_days: PositiveInt | None = None
 
     @field_validator("source_timezone")
     @classmethod
@@ -114,6 +121,11 @@ class ReleaseFamilySpec(StrictModel):
     @classmethod
     def _unique_series_keys(cls, v: list[str]) -> list[str]:
         return _require_unique(v, "series keys")
+
+    @field_validator("release_stages")
+    @classmethod
+    def _unique_stages(cls, v: list[str]) -> list[str]:
+        return _require_unique(v, "release stages")
 
 
 class ReleaseMap(StrictModel):

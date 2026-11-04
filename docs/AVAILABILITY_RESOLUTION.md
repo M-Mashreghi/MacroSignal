@@ -74,3 +74,25 @@ Every resolved timestamp stores:
 - final availability,
 - precision,
 - resolver version.
+
+## Release-Family Mapping (Task 2.6)
+
+`macrosignal.pit.release_mapping.ReleaseMappingRegistry` maps every configured
+macro series to its official release family using the macro registry plus a
+versioned release map. `configs/series/release_map_v2.yaml` (v1 kept unchanged)
+adds per-family reference-period rules: `reference_frequency`, ordered
+`release_stages` and a conservative `max_release_lag_days` bound. The
+registry's `mapping_id` (`release_map_v<version>_<content hash>`) is versioned
+independently of source adapters and is what resolved availability cites as
+`calendar_mapping_id`.
+
+Ambiguity is rejected, never guessed: a series listed by several families, a
+registry `release_family` that disagrees with the map, or one provider series
+configured under several keys fails at build time. `match_event(observation,
+events)` returns the unique calendar event with the same family, reference
+period and stage (a generic `initial` becomes the family's first stage, e.g.
+GDP `advance`); it returns `None` when no released event matches (the
+observation stays date-level), raises `AmbiguousMappingError` for several
+matches, and raises `MappingConflictError` when the event's local release date
+differs from the ALFRED vintage date or violates the family's reference-period
+rules.

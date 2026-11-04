@@ -1,0 +1,59 @@
+# Release-family mapping v2. v1 is kept unchanged for runs that reference it.
+# v2 adds reference-period rules: the reference frequency each family publishes,
+# its ordered release stages, and a conservative upper bound on the number of
+# days between the reference-period end and any release of that period (a
+# sanity bound for mapping, not a schedule).
+version: 2
+
+release_families:
+  CPI:
+    official_source: BLS
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    reference_frequency: monthly
+    release_stages: [initial, revision]
+    max_release_lag_days: 60
+    series_keys:
+      - headline_cpi
+      - core_cpi
+
+  EMPLOYMENT_SITUATION:
+    official_source: BLS
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    reference_frequency: monthly
+    release_stages: [initial, revision, benchmark_revision]
+    max_release_lag_days: 45
+    series_keys:
+      - payrolls
+      - unemployment
+
+  PCE:
+    official_source: BEA
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    reference_frequency: monthly
+    release_stages: [initial, revision]
+    max_release_lag_days: 75
+    series_keys:
+      - pce_price
+      - core_pce_price
+
+  GDP:
+    official_source: BEA
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    reference_frequency: quarterly
+    release_stages: [advance, second, third, revision]
+    max_release_lag_days: 120
+    series_keys:
+      - real_gdp
+
+  FOMC_STATEMENT:
+    official_source: FEDERAL_RESERVE
+    source_timezone: America/New_York
+    default_precision: exact_timestamp
+    reference_frequency: null
+    release_stages: []
+    max_release_lag_days: null
+    series_keys: []
