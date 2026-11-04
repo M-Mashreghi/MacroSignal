@@ -74,11 +74,11 @@ Update only after verification.
 - [x] **Task 4.11** — Macro Event-to-Market Alignment Engine — Commit: `bfa1719` — GitHub: `pushed`
 - [x] **Task 4.12** — Daily Event-Study Return Windows — Commit: `b8128e6` — GitHub: `pushed`
 - [x] **Task 4.13** — Intraday Event-Study Interface — Commit: `0c03202` — GitHub: `pushed`
-- [x] **Task 4.14** — Event Clusters, Overlap & Statistical Event Study — Commit: `pending` — GitHub: `pending`
+- [x] **Task 4.14** — Event Clusters, Overlap & Statistical Event Study — Commit: `c4596a5` — GitHub: `pushed`
 
 ## Phase 5 — Signals, Returns, Risk Models & Portfolio Construction
 
-- [ ] **Task 5.1** — Cross-Asset Universe & Tradability Resolver — Commit: `—` — GitHub: `—`
+- [x] **Task 5.1** — Cross-Asset Universe & Tradability Resolver — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 5.2** — Return Engine & Corporate-Action Semantics — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.3** — Cash / Risk-Free Return Engine — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.4** — Ex-Ante Volatility & Covariance Estimation — Commit: `—` — GitHub: `—`
