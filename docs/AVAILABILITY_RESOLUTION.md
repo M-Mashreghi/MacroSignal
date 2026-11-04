@@ -96,3 +96,22 @@ observation stays date-level), raises `AmbiguousMappingError` for several
 matches, and raises `MappingConflictError` when the event's local release date
 differs from the ALFRED vintage date or violates the family's reference-period
 rules.
+
+## Resolver Implementation (Task 2.11)
+
+`macrosignal.pit.availability_resolver.AvailabilityResolver(mapping, events)`
+emits, per observation, a `ResolvedObservation` holding the observation with
+its final `AvailabilityStamp`, the `rule`, the raw source timing, the matched
+`release_id`, any rejected-mapping reason, and the resolver version
+(`availability-resolver-1`). Rules, in precedence order:
+
+| Rule | When | Result |
+|---|---|---|
+| `official_calendar_exact` | the versioned release mapping finds a unique released event (same family, reference period, stage, vintage date) | `exact_timestamp` at the actual release time; `calendar_mapping_id = <mapping id>/<calendar snapshot>/<release id>`; `release_timestamp` set |
+| `source_stamp` | the source already provides `exact_timestamp` / `provider_timestamp` | kept unchanged |
+| `vintage_date_conservative_eod` | only a date is known, or calendar evidence was ambiguous/conflicting (reason recorded) | `release_date_only` at 23:59:59 America/New_York on the raw date, never earlier than the incoming stamp |
+| `unknown` | no usable timing | left `unknown`, so experiments can exclude it |
+
+Scheduled-only events are never used. `meets_precision(p, minimum)` applies the
+hierarchy `exact_timestamp > provider_timestamp > release_date_only >
+inferred_eod > unknown`.

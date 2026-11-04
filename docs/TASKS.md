@@ -36,8 +36,8 @@ Update only after verification.
 - [x] **Task 2.7** — BLS Release Calendar Adapter — Commit: `37055a6` — GitHub: `pushed`
 - [x] **Task 2.8** — BEA Release Schedule & Estimate-Stage Adapter — Commit: `8a18dcc` — GitHub: `pushed`
 - [x] **Task 2.9** — Federal Reserve FOMC Event Calendar Adapter — Commit: `d4cc81b` — GitHub: `pushed`
-- [x] **Task 2.10** — Treasury Nominal & Real Yield-Curve Adapter — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 2.11** — Availability Resolver & Precision Hierarchy — Commit: `—` — GitHub: `—`
+- [x] **Task 2.10** — Treasury Nominal & Real Yield-Curve Adapter — Commit: `6a56ffe` — GitHub: `pushed`
+- [x] **Task 2.11** — Availability Resolver & Precision Hierarchy — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 2.12** — Point-in-Time As-Of Query Engine — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.13** — Immutable PIT Snapshot Builder — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.14** — Daily Market Data Adapter & Trading Calendar — Commit: `—` — GitHub: `—`
