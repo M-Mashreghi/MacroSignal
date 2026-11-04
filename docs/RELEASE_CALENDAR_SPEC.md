@@ -87,3 +87,23 @@ scheduled time as released at that time.
 No BEA feed URL is hard-coded; `fetch_bea_calendar(http, url)` requires a
 caller-verified official URL. Actual release times follow the same opt-in
 `confirm_past_events` rule as the BLS adapter.
+
+## FOMC Adapter (Task 2.9)
+
+`macrosignal.calendar.fomc.parse_fomc_schedule` reads a versioned CSV compiled
+from the official Federal Reserve FOMC calendar (`meeting_start`,
+`meeting_end`, `statement_scheduled_at`, `statement_released_at`,
+`unscheduled`, `has_projections`). Statement times must be explicit
+timezone-aware ISO timestamps; no time of day is ever assumed, and a release
+recorded after the snapshot's retrieval time is rejected. Each `FomcMeeting`
+has `event_kind = policy_statement` and a statement `ReleaseEvent` in the
+separate `FOMC_STATEMENT` family with no reference period or release stage, so
+policy events never mix with macro observation releases. Meetings may span at
+most three days, the statement falls on the last meeting day, and meetings may
+not overlap.
+
+`policy_surprise(meeting, decided_value, expectation)` returns `None` without
+an expectation and otherwise requires a `consensus` expectation for that
+meeting that was available strictly before the statement's actual release
+(model forecasts are rejected); the announced decision alone never becomes a
+surprise.
