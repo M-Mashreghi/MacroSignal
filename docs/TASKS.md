@@ -21,8 +21,8 @@ Update only after verification.
 - [x] **Task 1.8** — Return / Execution Contract Models — Commit: `c53a78a` — GitHub: `pushed`
 - [x] **Task 1.9** — ResearchSnapshot & ResearchRun Manifests — Commit: `f38b4ba` — GitHub: `pushed`
 - [x] **Task 1.10** — Artifact Registry & Local Storage Layout — Commit: `eee1967` — GitHub: `pushed`
-- [x] **Task 1.11** — Synthetic Point-in-Time Fixture Suite — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 1.12** — Research Protocol & Hypothesis Registry — Commit: `—` — GitHub: `—`
+- [x] **Task 1.11** — Synthetic Point-in-Time Fixture Suite — Commit: `e3b77e4` — GitHub: `pushed`
+- [x] **Task 1.12** — Research Protocol & Hypothesis Registry — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 1.13** — Project Validation CLI & Repository Health Check — Commit: `—` — GitHub: `—`
 
 ## Phase 2 — Point-in-Time Data, Release Calendar & Market Data
