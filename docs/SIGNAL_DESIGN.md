@@ -90,3 +90,15 @@ to the previous close, and reports direction +1 / -1 / 0. Fewer than
 `min_observations` returns gives status `missing` (no inferred direction); a
 disabled component reports `disabled` for every asset so the trend can be
 ablated. Each signal records its window bounds and the number of returns used.
+
+## Combined Signal (Task 5.8)
+
+`macrosignal.signals.combined.combine(t, assets, weights, regime, surprise,
+trend)` computes `total = w_regime x regime + w_surprise x surprise +
+w_trend x trend_direction` per asset, exposing raw and weighted components and
+the missing ones (missing components contribute 0). `select_weights(rows,
+candidates, cutoff)` chooses among a declared candidate grid using only
+selection rows whose forward returns completed by the cutoff, by the mean of
+`total x forward_return`, records every candidate with its metric, and breaks
+ties towards smaller total weight. `decomposition_rows` / `decomposition_json`
+write the per-asset decomposition artifact.
