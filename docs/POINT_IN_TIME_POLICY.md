@@ -78,3 +78,17 @@ observations below the required precision (reported in
 `assert_no_lookahead(rows, t)` raises `LookaheadError` naming the offending
 source/series/row, and every `as_of` result passes it. Timestamps must be
 timezone-aware.
+
+## PIT Snapshots (Task 2.13)
+
+`macrosignal.pit.snapshot.build_pit_snapshot(store, as_of, ...)` freezes an
+`as_of` query into a `PitSnapshot`: sorted rows, the sorted unique raw
+`source_snapshot_ids`, `resolver_version`, `config_hash` and `code_commit`
+(`current_code_commit()` appends `-dirty` for uncommitted changes).
+`pit_snapshot_id = pit_<hash>` is a stable hash of those canonical inputs
+(`created_at` excluded; durations serialize as seconds), and the validator
+rejects tampered rows, rows not available at `as_of`, or mismatched source ids.
+Each snapshot includes a `PrecisionQualityReport` (row counts per precision,
+rows flagged as `inferred_eod` / `unknown`, rows excluded by `min_precision`).
+`persist_pit_snapshot` stores `snapshot.json` and `quality_report.json` as an
+immutable `pit_snapshot` artifact.

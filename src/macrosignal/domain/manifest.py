@@ -6,8 +6,8 @@ A manifest must let someone audit a run later without consulting mutable
 * every config a run used is embedded as a :class:`ConfigRecord` (content plus
   its stable hash), not just referenced by path;
 * serialization is canonical (:func:`canonical_json`: sorted keys, compact
-  separators, UTC ISO timestamps, no NaN/inf) so hashes are reproducible across
-  machines and Python versions;
+  separators, UTC ISO timestamps, durations as seconds, no NaN/inf) so hashes
+  are reproducible across machines and Python versions;
 * snapshot and run ids are derived from the identity content (everything except
   ``created_at``), so rebuilding the same inputs yields the same id, and the
   validators reject ids that do not match their content.
@@ -19,7 +19,7 @@ import hashlib
 import json
 import math
 from collections.abc import Mapping
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 from enum import Enum
 from typing import Annotated, Any
 
@@ -44,6 +44,8 @@ def _normalize(value: Any) -> Any:
         return value.astimezone(UTC).isoformat()
     if isinstance(value, date):
         return value.isoformat()
+    if isinstance(value, timedelta):
+        return value.total_seconds()
     if isinstance(value, Mapping):
         out: dict[str, Any] = {}
         for k, v in value.items():

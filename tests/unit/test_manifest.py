@@ -32,6 +32,7 @@ def test_canonical_json_is_order_and_timezone_stable() -> None:
     assert canonical_json(a) == '{"a":[1.5,"x"],"b":1,"t":"2026-10-15T12:30:00+00:00"}'
     assert stable_hash(a) == stable_hash(b)
     assert stable_hash({"d": date(2026, 1, 2)}).startswith("sha256:")
+    assert canonical_json({"dt": timedelta(hours=1, seconds=1)}) == '{"dt":3601.0}'
 
 
 @pytest.mark.parametrize(
