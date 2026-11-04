@@ -117,3 +117,27 @@ fields rejected):
   execution_time <= mark_time` (no same-instant fill) and `check_inputs()`
   raises `AvailabilityViolation` when any input's `available_at` is after the
   information time.
+
+## Trading Calendar & Demo Market Data (Task 2.14)
+
+`macrosignal.calendar.trading.UsTradingCalendar` is a rule-based NYSE calendar
+for 2000-2099 (dates outside raise `CalendarRangeError`): weekends; New Year's
+(Saturday not observed), MLK, Washington's Birthday, Good Friday, Memorial,
+Juneteenth (from 2022), Independence Day, Labor, Thanksgiving and Christmas
+with Saturday->Friday / Sunday->Monday observance; documented special closures
+(2001-09-11..14, 2004-06-11, 2007-01-02, 2012-10-29/30, 2018-12-05, 2025-01-09,
+extensible); 13:00 ET early closes on July 3 before a weekday Independence
+Day, the day after Thanksgiving and December 24. It provides sessions,
+next/previous session and session open (09:30) / close timestamps.
+
+`macrosignal.data.market` defines the provider-neutral `MarketDataProvider`
+interface and one demo provider, `YahooDemoProvider` (optional `yfinance`,
+extra `market-demo`, demo only). Field semantics are explicit: with
+`auto_adjust=False`, `Open/High/Low/Close/Volume` are `split_adjusted` and
+`Adj Close` is `split_and_dividend_adjusted`. `normalize_daily_bars` stamps open
+fields at the session open and other fields at the session close (13:00 on
+early-close days), rejects rows on non-sessions, duplicate or post-retrieval
+dates, reports `missing_sessions` and `missing_values` without filling them,
+and derives conservative `AssetMetadata` coverage/inception from the provider's
+first valid row. `cache_raw_batch` stores the raw payload and provider metadata
+as an immutable `raw_snapshot` artifact.

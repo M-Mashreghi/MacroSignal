@@ -39,8 +39,8 @@ Update only after verification.
 - [x] **Task 2.10** — Treasury Nominal & Real Yield-Curve Adapter — Commit: `6a56ffe` — GitHub: `pushed`
 - [x] **Task 2.11** — Availability Resolver & Precision Hierarchy — Commit: `dc04a52` — GitHub: `pushed`
 - [x] **Task 2.12** — Point-in-Time As-Of Query Engine — Commit: `55955cd` — GitHub: `pushed`
-- [x] **Task 2.13** — Immutable PIT Snapshot Builder — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 2.14** — Daily Market Data Adapter & Trading Calendar — Commit: `—` — GitHub: `—`
+- [x] **Task 2.13** — Immutable PIT Snapshot Builder — Commit: `e1ba1d5` — GitHub: `pushed`
+- [x] **Task 2.14** — Daily Market Data Adapter & Trading Calendar — Commit: `pending` — GitHub: `pending`
 
 ## Phase 3 — Expectations, Ragged-Edge Features & Surprise Engine
 
