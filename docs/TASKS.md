@@ -52,8 +52,8 @@ Update only after verification.
 - [x] **Task 3.6** — Policy / Rates Feature Pipeline — Commit: `99f950a` — GitHub: `pushed`
 - [x] **Task 3.7** — Yield-Curve Shape Features — Commit: `c3f6d9a` — GitHub: `pushed`
 - [x] **Task 3.8** — Training-Only Yield-Curve PCA — Commit: `7d51536` — GitHub: `pushed`
-- [x] **Task 3.9** — Ragged-Edge AsOfFeatureFrame — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 3.10** — Expectation Provider Interface — Commit: `—` — GitHub: `—`
+- [x] **Task 3.9** — Ragged-Edge AsOfFeatureFrame — Commit: `183f914` — GitHub: `pushed`
+- [x] **Task 3.10** — Expectation Provider Interface — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 3.11** — Timestamped Consensus CSV Adapter — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.12** — Pre-Release Forecast Baseline — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.13** — Raw Surprise / Forecast-Error Engine — Commit: `—` — GitHub: `—`
