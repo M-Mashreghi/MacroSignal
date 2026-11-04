@@ -117,3 +117,14 @@ observation, `max_probability`, `normalized_entropy` (entropy / log K),
 `effective_confidence`. No action carries an old regime forward or rounds
 probabilities up. `confidence_rows()` exposes all fields for research outputs
 and the dashboard.
+
+## Model D Implementation (Task 4.8)
+
+`macrosignal.regimes.macro_pca.fit_macro_pca(frame, features, cutoff,
+n_components=..., fit_id=...)` fits principal components of standardized
+macro / rates / curve-shape features on complete-case training rows at or
+before the cutoff (other cell kinds are refused, so the state never depends on
+asset returns), with deterministic signs (largest absolute loading positive),
+and freezes scaler, loadings, explained variance and cutoff (`params_hash`).
+`factor_states(frame)` applies the frozen transform to every complete row and
+flags rows at or before the cutoff as `in_sample`.

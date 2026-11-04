@@ -67,8 +67,8 @@ Update only after verification.
 - [x] **Task 4.4** — Hidden Markov Model Regime Baseline — Commit: `e6ca308` — GitHub: `pushed`
 - [x] **Task 4.5** — Filtered-vs-Smoothed Probability Guard — Commit: `33339f4` — GitHub: `pushed`
 - [x] **Task 4.6** — Latent State Canonicalization / Alignment — Commit: `76b24b8` — GitHub: `pushed`
-- [x] **Task 4.7** — Regime Probability Uncertainty & Low-Confidence Policy — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 4.8** — PCA / Dynamic-Factor Macro-State Baseline — Commit: `—` — GitHub: `—`
+- [x] **Task 4.7** — Regime Probability Uncertainty & Low-Confidence Policy — Commit: `316f7c6` — GitHub: `pushed`
+- [x] **Task 4.8** — PCA / Dynamic-Factor Macro-State Baseline — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 4.9** — Regime Model / State-Count Selection Policy — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.10** — Regime Persistence, Transition & Alignment Diagnostics — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.11** — Macro Event-to-Market Alignment Engine — Commit: `—` — GitHub: `—`
