@@ -67,3 +67,16 @@ counting the reacting one). Prices must exist exactly at the declared session
 closes (`missing_price` otherwise, never filled); windows outside the asset's
 coverage are `outside_lifecycle`; market-hours events are flagged
 `includes_pre_event_trading`, so no intraday reaction is ever claimed.
+
+## Intraday Interface (Task 4.13, optional in v1)
+
+`macrosignal.event_study.intraday` defines the contract a future intraday
+provider must meet: `IntradayBarSeries` (one asset / provider, fixed bar
+frequency of at most six hours, explicit `bar_end` / `bar_start` timestamp
+convention, timezone-aware strictly increasing bars), the `IntradayProvider`
+protocol, `IntradayWindowSpec` (minutes before / after) and
+`intraday_event_return` (last bar ending at or before `event - before` to the
+first bar ending at or after `event + after`). Daily data are rejected: a
+daily frequency, bar spacing that reveals daily sampling, or daily
+`MarketObservation` lists. v1 ships `UnconfiguredIntradayProvider`, which
+refuses to produce data.

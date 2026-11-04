@@ -72,8 +72,8 @@ Update only after verification.
 - [x] **Task 4.9** — Regime Model / State-Count Selection Policy — Commit: `4837096` — GitHub: `pushed`
 - [x] **Task 4.10** — Regime Persistence, Transition & Alignment Diagnostics — Commit: `4281756` — GitHub: `pushed`
 - [x] **Task 4.11** — Macro Event-to-Market Alignment Engine — Commit: `bfa1719` — GitHub: `pushed`
-- [x] **Task 4.12** — Daily Event-Study Return Windows — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 4.13** — Intraday Event-Study Interface — Commit: `—` — GitHub: `—`
+- [x] **Task 4.12** — Daily Event-Study Return Windows — Commit: `b8128e6` — GitHub: `pushed`
+- [x] **Task 4.13** — Intraday Event-Study Interface — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 4.14** — Event Clusters, Overlap & Statistical Event Study — Commit: `—` — GitHub: `—`
 
 ## Phase 5 — Signals, Returns, Risk Models & Portfolio Construction
