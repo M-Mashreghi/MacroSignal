@@ -63,3 +63,19 @@ different values raise `AmbiguousExpectationError`, and no valid candidate
 yields status `missing` (never imputed). Rejected candidates are returned with
 reasons. `expectation_rows()` always carries `mode` and `expectation_type`
 columns into downstream tables.
+
+## Consensus CSV Adapter (Task 3.11)
+
+`macrosignal.surprises.consensus_csv.import_consensus_csv(text, events,
+default_units=...)` imports the documented schema
+(`examples/consensus_template.csv`; optional `release_stage` and `units`
+columns). `release_id` (the release family) plus `reference_period` (and the
+stage when given) must match exactly one *released* calendar event; timestamps
+must carry a UTC offset; only `consensus` rows are accepted. The
+`ConsensusImportReport` classifies every non-accepted row as `invalid`,
+`unmatched`, `ambiguous` (e.g. several GDP estimate rounds without a stage) or
+`post_release` (available at/after the actual release). Accepted rows become
+`ConsensusExpectation`s keyed to the event's release id and can be served
+through `ConsensusImport.provider()`. Files are read from a user path (keep
+licensed data outside the repository); the snapshot id is a hash of the file
+bytes.
