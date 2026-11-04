@@ -54,8 +54,8 @@ Update only after verification.
 - [x] **Task 3.8** — Training-Only Yield-Curve PCA — Commit: `7d51536` — GitHub: `pushed`
 - [x] **Task 3.9** — Ragged-Edge AsOfFeatureFrame — Commit: `183f914` — GitHub: `pushed`
 - [x] **Task 3.10** — Expectation Provider Interface — Commit: `79fe9d3` — GitHub: `pushed`
-- [x] **Task 3.11** — Timestamped Consensus CSV Adapter — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 3.12** — Pre-Release Forecast Baseline — Commit: `—` — GitHub: `—`
+- [x] **Task 3.11** — Timestamped Consensus CSV Adapter — Commit: `e3df6db` — GitHub: `pushed`
+- [x] **Task 3.12** — Pre-Release Forecast Baseline — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 3.13** — Raw Surprise / Forecast-Error Engine — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.14** — Point-in-Time Standardization & Composite Surprise Factors — Commit: `—` — GitHub: `—`
 

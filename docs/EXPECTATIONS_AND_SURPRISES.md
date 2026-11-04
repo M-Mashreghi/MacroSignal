@@ -79,3 +79,17 @@ must carry a UTC offset; only `consensus` rows are accepted. The
 through `ConsensusImport.provider()`. Files are read from a user path (keep
 licensed data outside the repository); the snapshot id is a hash of the file
 bytes.
+
+## Pre-Release Forecast Baselines (Task 3.12)
+
+`macrosignal.surprises.forecast_baseline.forecast_release(store, series,
+transformation, release, model, lead=1 day)` creates a forecast at
+`actual_release_at - lead`, trained only on the series' as-of view at that
+moment (no target realization, no later revisions; inputs pass the
+no-lookahead guard). Models: `naive` (last value), `ar` (AR(p) with intercept,
+OLS) and `ridge_ar` (L2 penalty on lag coefficients, intercept unpenalized).
+Output is a `ModelForecast` (model id / version `baseline-1:<id>`, training
+cutoff = creation time, availability, input snapshot ids) wrapped in a
+`BaselineForecast` labelled `forecast_error`; too little history yields a
+skipped forecast with a reason. `rolling_forecasts` runs the rolling origin
+over a set of releases in chronological order.
