@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from datetime import date, datetime
 from typing import Annotated
-from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from zoneinfo import ZoneInfo
 
 from pydantic import (
     AwareDatetime,
@@ -33,26 +33,9 @@ from macrosignal.domain.availability import (
     AvailabilityStamp,
 )
 from macrosignal.domain.macro_observation import ReleaseStage
+from macrosignal.domain.timezones import validate_iana_timezone
 
 NonEmptyStr = Annotated[str, Field(min_length=1)]
-
-_UTC_ALIASES = frozenset({"UTC", "Etc/UTC"})
-
-
-def _validate_iana_timezone(name: str) -> str:
-    if name.startswith("Etc/GMT") or name.upper().startswith(("UTC+", "UTC-", "GMT+", "GMT-")):
-        raise ValueError(
-            f"source_timezone {name!r} is a fixed UTC offset; use an IANA zone such as "
-            "'America/New_York'"
-        )
-    if name not in _UTC_ALIASES and "/" not in name:
-        raise ValueError(f"source_timezone {name!r} is not an IANA region/city zone name")
-    try:
-        ZoneInfo(name)
-    except (ZoneInfoNotFoundError, ValueError) as exc:
-        raise ValueError(f"source_timezone {name!r} is not in the timezone database") from exc
-    return name
-
 
 class ReleaseEvent(BaseModel):
     """One scheduled (and possibly realised) release from a calendar snapshot."""
@@ -79,7 +62,7 @@ class ReleaseEvent(BaseModel):
     @field_validator("source_timezone")
     @classmethod
     def _check_timezone(cls, value: str) -> str:
-        return _validate_iana_timezone(value)
+        return validate_iana_timezone(value, field="source_timezone")
 
     @model_validator(mode="after")
     def _check_chronology(self) -> ReleaseEvent:

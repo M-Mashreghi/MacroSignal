@@ -157,6 +157,16 @@ price_adjustment_policy
 return_convention
 ```
 
+Implemented as `macrosignal.domain.AssetMetadata` (Task 1.7, frozen, unknown
+fields rejected), with an optional `coverage_end`. `provider`, ISO-4217
+`currency`, IANA exchange `timezone` (fixed offsets rejected),
+`price_adjustment_policy` and `return_convention` are required. Lifecycle rules:
+`coverage_start >= first_tradable_date` (no backfill before inception),
+`last_tradable_date >= first_tradable_date`, and `coverage_end` within
+`coverage_start..last_tradable_date`. `check_observation()` raises
+`LifecycleError` when an observation's exchange-local date is outside the
+tradable lifecycle or provider coverage, or its asset/provider/currency differ.
+
 ## MarketObservation
 
 ```text
@@ -170,6 +180,14 @@ adjustment_policy
 retrieved_at
 snapshot_id
 ```
+
+Implemented as `macrosignal.domain.MarketObservation` (Task 1.7). `field` is one
+of `open`, `high`, `low`, `close`, `adjusted_close`, `total_return_index`,
+`volume`; `adjustment_policy` one of `unadjusted`, `split_adjusted`,
+`split_and_dividend_adjusted`, `total_return`, and must be legitimate for the
+field (`FIELD_ADJUSTMENTS`, e.g. `adjusted_close` is never `unadjusted`). Prices
+must be positive and finite, volume non-negative, timestamps timezone-aware, and
+`retrieved_at` not before `timestamp`.
 
 ## RegimeStateArtifact
 
