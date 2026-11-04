@@ -144,3 +144,15 @@ threshold the caller must pass from configuration; absent tenors are listed in
 earlier on `t`'s New York date, calendar snapshot id). Because curves are
 end-of-day, a morning decision on a macro-release day sees the 08:30 macro
 release but still the previous day's curve. No policy surprise is computed.
+
+## Yield-Curve Shape (Task 3.7)
+
+`macrosignal.features.curve_shape.build_curve_shape_features(curves, t)`
+computes explicit linear combinations from the latest curve date knowable at
+`t`: `nominal_level_10y`, `nominal_2y`, `nominal_spread_10y_2y`,
+`nominal_spread_10y_3m`, `nominal_slope_30y_5y`, `nominal_curvature`
+(2*5Y - 2Y - 10Y), `real_level_10y` and `breakeven_10y` (nominal 10Y - real
+10Y). Each feature keeps observation date, end-of-day availability, precision,
+age, input legs and snapshot ids. A missing maturity, or inputs observed on
+different dates, makes the feature missing with a stated reason; nothing is
+interpolated or borrowed from another date.
