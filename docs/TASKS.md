@@ -78,8 +78,8 @@ Update only after verification.
 
 ## Phase 5 — Signals, Returns, Risk Models & Portfolio Construction
 
-- [x] **Task 5.1** — Cross-Asset Universe & Tradability Resolver — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 5.2** — Return Engine & Corporate-Action Semantics — Commit: `—` — GitHub: `—`
+- [x] **Task 5.1** — Cross-Asset Universe & Tradability Resolver — Commit: `5988372` — GitHub: `pushed`
+- [x] **Task 5.2** — Return Engine & Corporate-Action Semantics — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 5.3** — Cash / Risk-Free Return Engine — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.4** — Ex-Ante Volatility & Covariance Estimation — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.5** — Regime-Based Asset Score — Commit: `—` — GitHub: `—`

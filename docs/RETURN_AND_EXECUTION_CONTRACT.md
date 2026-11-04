@@ -141,3 +141,16 @@ dates, reports `missing_sessions` and `missing_values` without filling them,
 and derives conservative `AssetMetadata` coverage/inception from the provider's
 first valid row. `cache_raw_batch` stores the raw payload and provider metadata
 as an immutable `raw_snapshot` artifact.
+
+## Research Return Engine (Task 5.2)
+
+`macrosignal.portfolio.returns.compute_returns(asset, prices, spec, calendar,
+start, end)` computes session-to-session research returns, separately from
+execution simulation. Prices must use exactly the spec's field and adjustment
+policy, sit at the trading calendar's session closes (13:00 on early closes)
+and belong to the asset, whose declared return convention must match the spec.
+Only sessions inside the asset's lifecycle and coverage count; a session
+without a price makes the returns into and out of it missing (listed in
+`missing_sessions`, never bridged). One-session moves above `max_abs_return`
+(default 35%) are flagged as suspected unadjusted corporate actions and can be
+made fatal with `reject_suspicious=True`.
