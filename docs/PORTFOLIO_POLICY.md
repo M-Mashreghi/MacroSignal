@@ -41,3 +41,14 @@ explicit exclusion reason for every other configured asset (`no_metadata`,
 `before_inception`, `after_last_tradable`, `outside_coverage`), so ETF proxies
 are never used before their inception; `universe_series(days)` evaluates it per
 execution date.
+
+## Ex-Ante Risk Estimates (Task 5.4)
+
+`macrosignal.portfolio.risk.estimate_covariance(returns, rebalance_session,
+fit_time, RiskSettings(...))` uses only research returns of sessions strictly
+before the rebalance session (unless `include_rebalance_session`), over the
+last `lookback` sessions, on complete-case rows; assets with fewer than
+`min_observations` returns are excluded with a reason, never filled. Methods:
+`sample`, `ledoit_wolf` (shrinkage baseline, default) and `ewma` (half-life).
+Estimates are annualized (`periods_per_year`, default 252) and record the
+estimation window, number of observations, method, shrinkage and fit time.
