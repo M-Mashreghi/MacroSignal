@@ -12,6 +12,18 @@ Important:
 
 Do not infer exact intraday release time from a vintage date alone.
 
+Transport (Task 2.2): `macrosignal.data.fred.FredClient` wraps
+`fred/series`, `fred/series/release`, `fred/series/observations` (with
+`realtime_start` / `realtime_end` / `vintage_dates` / `output_type`),
+`fred/series/vintagedates` and `fred/release/dates`. It requires
+`FRED_API_KEY` (raising `MissingCredentialError` otherwise), follows
+`limit`/`offset` pagination until `count` is reached, rejects FRED error
+envelopes and malformed responses, and returns raw records plus the raw
+snapshot ids they came from; normalization is a separate step.
+`configured_series_ids(registry)` lists the FRED series of the macro registry.
+Tests use synthetic response fixtures in `tests/fixtures/fred/` via the
+offline `tests/fakes.py::FakeFred` transport.
+
 ## BLS
 
 Use for:

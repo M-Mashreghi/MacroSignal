@@ -27,8 +27,8 @@ Update only after verification.
 
 ## Phase 2 — Point-in-Time Data, Release Calendar & Market Data
 
-- [x] **Task 2.1** — HTTP Client, Retry & Raw Snapshot Layer — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 2.2** — FRED / ALFRED API Client — Commit: `—` — GitHub: `—`
+- [x] **Task 2.1** — HTTP Client, Retry & Raw Snapshot Layer — Commit: `d0dc890` — GitHub: `pushed`
+- [x] **Task 2.2** — FRED / ALFRED API Client — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 2.3** — FRED Series Metadata Normalization — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.4** — ALFRED Vintage-Date Retrieval — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.5** — Initial Release & Revision Observation Retrieval — Commit: `—` — GitHub: `—`
