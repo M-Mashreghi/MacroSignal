@@ -80,3 +80,17 @@ first bar ending at or after `event + after`). Daily data are rejected: a
 daily frequency, bar spacing that reveals daily sampling, or daily
 `MarketObservation` lists. v1 ships `UnconfiguredIntradayProvider`, which
 refuses to produce data.
+
+## Clusters & Statistical Event Study (Task 4.14)
+
+`macrosignal.event_study.statistics.detect_clusters(alignments, calendar,
+max_session_gap=0)` chains events whose reacting sessions are within
+`max_session_gap` trading sessions (a post-close event and the next morning's
+release share a session); clusters with more than one event are contaminated
+(`contamination_map`). `event_study(responses, EventStudySettings(...))` groups
+`EventResponse`s by `release_family`, `surprise_bucket` (declared z thresholds;
+`missing` when no surprise exists) and / or `regime`, excludes contaminated
+events by default (counted in `n_contaminated_excluded`), and reports n, mean,
+median, standard deviation and a seeded percentile bootstrap confidence
+interval of the mean; groups below `min_sample` are flagged `small_sample` and
+get no interval.
