@@ -82,3 +82,17 @@ prior_fit_id
 ## Signals
 
 Signals consume canonical state IDs or probability vectors after alignment.
+
+## Regime State Data Model (Task 4.2)
+
+`macrosignal.domain.regime.RegimeObservation` records `as_of`, `fit_id`,
+`model_version`, `fit_cutoff`, `probability_type` (`hard_rule`,
+`mixture_posterior`, `filtered`, `predicted`, `smoothed`), `kind`
+(`hard_label` with raw / canonical state id, or `probability_vector` with raw
+and optional canonical probabilities), `alignment_confidence` and a
+`diagnostic` flag. Vectors must be non-negative and sum to one, with matching
+raw / canonical state counts; hard labels may not carry vectors. `smoothed`
+(future-informed) can only be constructed with `diagnostic=True`, live
+observations need `fit_cutoff <= as_of`, and aligned latent states need an
+alignment confidence. `require_live_states()` is the gate for signal and
+backtest code: it rejects diagnostic, future-informed and unaligned states.
