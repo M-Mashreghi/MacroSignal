@@ -62,3 +62,19 @@ Future-informed:
 - full-sample PCA,
 
 may be used only in clearly labeled ex-post diagnostics.
+
+## As-Of Query Engine (Task 2.12)
+
+`macrosignal.pit.as_of.PitStore` keeps every vintage and release stage of each
+`(source, series_id, reference_start)` (plain or resolved observations).
+`as_of(t)` returns, per observation key, the vintage with the greatest
+`available_at <= t`: nothing before the initial release, the initial print
+until the next stage/revision becomes available, then the revision. Ties at
+the same instant are ordered by stage (initial/advance < second < third <
+revision < benchmark revision) and real-time start; different values at the
+same instant raise `AmbiguousVintageError`. `min_precision` *excludes*
+observations below the required precision (reported in
+`excluded_for_precision`, never replaced by an older vintage).
+`assert_no_lookahead(rows, t)` raises `LookaheadError` naming the offending
+source/series/row, and every `as_of` result passes it. Timestamps must be
+timezone-aware.
