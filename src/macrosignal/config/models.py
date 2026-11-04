@@ -73,6 +73,8 @@ class MacroSeriesSpec(StrictModel):
     transformation_set: list[Identifier] = Field(min_length=1)
     stale_after_days: PositiveInt
     pit_required: bool
+    # Registry v3+: how availability is established (optional so v1 stays valid).
+    timing_policy: Literal["release_calendar", "vintage_date_conservative"] | None = None
 
     @field_validator("transformation_set")
     @classmethod

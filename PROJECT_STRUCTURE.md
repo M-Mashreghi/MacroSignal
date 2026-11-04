@@ -72,6 +72,7 @@ MacroSignal/
 ├── configs/
 │   ├── series/
 │   │   ├── us_macro_v1.yaml
+│   │   ├── us_macro_v2.yaml
 │   │   ├── release_map_v1.yaml
 │   │   └── release_map_v2.yaml
 │   ├── assets/

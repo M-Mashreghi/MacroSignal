@@ -1,0 +1,97 @@
+# Macro series registry v3 (file v2). v1 is kept unchanged for runs that use it.
+# v3 adds an explicit timing_policy per series:
+#   release_calendar           - availability may be resolved to an exact time via
+#                                the release-family mapping (release_map_v2+)
+#   vintage_date_conservative  - no official release family is mapped; ALFRED
+#                                vintage dates are used at conservative end of day
+registry_version: 3
+series:
+  - key: headline_cpi
+    provider: fred_alfred
+    series_id: CPIAUCSL
+    family: inflation
+    release_family: CPI
+    transformation_set: [level, yoy_pct, mom_pct]
+    stale_after_days: 50
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: core_cpi
+    provider: fred_alfred
+    series_id: CPILFESL
+    family: inflation
+    release_family: CPI
+    transformation_set: [level, yoy_pct, mom_pct]
+    stale_after_days: 50
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: pce_price
+    provider: fred_alfred
+    series_id: PCEPI
+    family: inflation
+    release_family: PCE
+    transformation_set: [level, yoy_pct, mom_pct]
+    stale_after_days: 55
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: core_pce_price
+    provider: fred_alfred
+    series_id: PCEPILFE
+    family: inflation
+    release_family: PCE
+    transformation_set: [level, yoy_pct, mom_pct]
+    stale_after_days: 55
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: payrolls
+    provider: fred_alfred
+    series_id: PAYEMS
+    family: labor
+    release_family: EMPLOYMENT_SITUATION
+    transformation_set: [level, mom_diff]
+    stale_after_days: 45
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: unemployment
+    provider: fred_alfred
+    series_id: UNRATE
+    family: labor
+    release_family: EMPLOYMENT_SITUATION
+    transformation_set: [level, mom_diff]
+    stale_after_days: 45
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: real_gdp
+    provider: fred_alfred
+    series_id: GDPC1
+    family: growth
+    release_family: GDP
+    transformation_set: [level, qoq_annualized, yoy_pct]
+    stale_after_days: 150
+    pit_required: true
+    timing_policy: release_calendar
+
+  - key: industrial_production
+    provider: fred_alfred
+    series_id: INDPRO
+    family: growth
+    release_family: null
+    transformation_set: [level, yoy_pct, mom_pct]
+    stale_after_days: 50
+    pit_required: true
+    timing_policy: vintage_date_conservative
+
+  - key: fed_funds
+    provider: fred_alfred
+    series_id: FEDFUNDS
+    family: policy
+    release_family: null
+    transformation_set: [level, mom_diff]
+    stale_after_days: 40
+    pit_required: true
+    timing_policy: vintage_date_conservative

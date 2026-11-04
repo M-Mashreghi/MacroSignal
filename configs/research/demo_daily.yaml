@@ -5,7 +5,7 @@ mode: free_research
 start_date: "2007-01-01"
 decision_frequency: daily
 
-macro_registry: configs/series/us_macro_v1.yaml
+macro_registry: configs/series/us_macro_v2.yaml
 release_map: configs/series/release_map_v2.yaml
 asset_universe: configs/assets/cross_asset_v1.yaml
 regime_config: configs/regimes/regimes_v1.yaml

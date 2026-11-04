@@ -232,7 +232,7 @@ def test_absolute_reference_path_rejected(project: Path) -> None:
 
 
 def test_series_release_family_must_exist_in_release_map(project: Path) -> None:
-    series = project / "configs/series/us_macro_v1.yaml"
+    series = project / "configs/series/us_macro_v2.yaml"
     data = _read(series)
     data["series"][0]["release_family"] = "RETAIL_SALES"
     _write(series, data)

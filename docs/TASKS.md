@@ -40,11 +40,11 @@ Update only after verification.
 - [x] **Task 2.11** — Availability Resolver & Precision Hierarchy — Commit: `dc04a52` — GitHub: `pushed`
 - [x] **Task 2.12** — Point-in-Time As-Of Query Engine — Commit: `55955cd` — GitHub: `pushed`
 - [x] **Task 2.13** — Immutable PIT Snapshot Builder — Commit: `e1ba1d5` — GitHub: `pushed`
-- [x] **Task 2.14** — Daily Market Data Adapter & Trading Calendar — Commit: `pending` — GitHub: `pending`
+- [x] **Task 2.14** — Daily Market Data Adapter & Trading Calendar — Commit: `bb061b9` — GitHub: `pushed`
 
 ## Phase 3 — Expectations, Ragged-Edge Features & Surprise Engine
 
-- [ ] **Task 3.1** — Macro Series Registry Loader — Commit: `—` — GitHub: `—`
+- [x] **Task 3.1** — Macro Series Registry Loader — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 3.2** — Macro Transformation Registry — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.3** — Inflation Feature Pipeline — Commit: `—` — GitHub: `—`
 - [ ] **Task 3.4** — Labor Feature Pipeline — Commit: `—` — GitHub: `—`
