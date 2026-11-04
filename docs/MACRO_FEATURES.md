@@ -104,3 +104,15 @@ input snapshot ids, `available_at = max(input availability)` and the worst
 input precision. Missing lag periods and non-positive bases produce no value
 (no interpolation), and mixed units / frequency / seasonal adjustment, mixed
 series or duplicate vintages raise `TransformationError`.
+
+## Labor Pipeline (Task 3.4)
+
+`macrosignal.features.labor.build_labor_features(store, catalog, t, events)`
+requires labor series to map to `EMPLOYMENT_SITUATION` with `release_calendar`
+timing and builds payroll / unemployment level and `mom_diff` features from the
+revision-aware as-of view (a revised earlier month replaces the old vintage only
+from its own release onwards). Thresholds come from each series'
+`stale_after_days`. Besides each feature's age, the result reports the latest
+Employment Situation release known at `t` (actual releases only) and
+`overdue_features`: features not updated since that release, or missing, so an
+absent update is visible rather than silently carried.
