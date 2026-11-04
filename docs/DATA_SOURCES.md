@@ -120,3 +120,16 @@ All source adapters fetch through `macrosignal.data.http.HttpClient`
   and API key, so identical re-fetches are idempotent;
 - `persist_snapshot` stores `payload.bin` and `request.json` as an immutable
   `raw_snapshot` artifact under `data/raw/<source>/` (git-ignored).
+
+## FRED Series Metadata (Task 2.3)
+
+`macrosignal.data.fred_metadata.fetch_series_metadata` combines `fred/series`
+and `fred/series/release` into a frozen `SeriesMetadata`: title, units,
+canonical `frequency` and `seasonal_adjustment` (unsupported FRED values such
+as biweekly raise `MetadataNormalizationError` rather than being guessed),
+observation range, `last_updated` (FRED's hour offset parsed as tz-aware),
+release id/name, and the `metadata_snapshot_ids` of the raw responses.
+`compare_definitions` reports units / frequency / seasonal-adjustment changes as
+blocking and title / release changes as non-blocking; `assert_compatible`
+raises `DefinitionChangeError` so incompatible histories are never merged
+silently.
