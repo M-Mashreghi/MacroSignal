@@ -128,3 +128,18 @@ asset returns), with deterministic signs (largest absolute loading positive),
 and freezes scaler, loadings, explained variance and cutoff (`params_hash`).
 `factor_states(frame)` applies the frozen transform to every complete row and
 flags rows at or before the cutoff as `in_sample`.
+
+## State-Count Selection Policy (Task 4.9)
+
+`macrosignal.regimes.selection.select_regime_model(frame, features, cutoff,
+model_types, candidate_states, policy, seed)` fits every candidate on the
+training window and records BIC, minimum occupancy, persistence (HMM mean
+self-transition; GMM same-label share of consecutive training rows) and
+stability (refit on the first `stability_fraction` of training rows aligned to
+the full fit; minimum alignment confidence, 0 if it fails). Rule: keep
+candidates meeting `min_occupancy`, `min_persistence` and `min_stability`,
+choose the lowest BIC, ties to fewer states; if none qualifies nothing is
+selected. `SelectionPolicy` refuses criteria based on returns or test-period
+performance (e.g. Sharpe). Every tested configuration, with its metrics,
+rejection reasons and selection flag, is stored in the `SelectionRegistry`
+(`n_variants`, `registry_hash`).
