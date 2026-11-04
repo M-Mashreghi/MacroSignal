@@ -90,3 +90,16 @@ contemporaneous `filtered` probabilities for decision times at or after the
 cutoff, each computed from rows up to that time only;
 `smoothed_diagnostics(frame)` emits future-informed `smoothed` probabilities
 that are always `diagnostic=True`.
+
+## Filtered-vs-Smoothed Guard (Task 4.5)
+
+`macrosignal.regimes.guard`: signal and backtest entry points take a
+`LiveRegimeSeries`, constructible only from contemporaneous, aligned,
+non-diagnostic states with strictly increasing decision times and
+`fit_cutoff <= as_of`; the `@live_regime_input` decorator rejects anything
+else (lists of raw states, `ExPostDiagnostics`). Smoothed probabilities can
+only be held in `ExPostDiagnostics`, which has no conversion to the live type.
+`verify_filtered_against_fit(fit, frame, states)` recomputes the
+contemporaneous filter and rejects states whose probabilities differ (smoothed
+numbers relabelled as `filtered`). `tests/regression/test_smoothed_leakage_guard.py`
+attempts each leakage path and requires it to fail.
