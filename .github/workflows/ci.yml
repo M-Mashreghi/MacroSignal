@@ -18,7 +18,11 @@ jobs:
         run: python scripts/validate_project.py
       - name: Install package with dev tooling
         run: python -m pip install -e ".[dev]"
+      - name: Validate repository with config schemas
+        run: macrosignal validate
       - name: Lint
         run: ruff check .
+      - name: Type check
+        run: mypy src/macrosignal
       - name: Test
         run: pytest

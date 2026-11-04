@@ -31,6 +31,22 @@ def status() -> None:
     typer.echo("MacroSignal bootstrap is ready. Follow docs/PROJECT_PHASES_AND_TASKS.md.")
 
 
+@app.command("validate")
+def validate_repository(
+    root: Annotated[
+        Path | None, typer.Option(help="Project root (default: nearest pyproject.toml).")
+    ] = None,
+) -> None:
+    """Run repository integrity checks; exits non-zero on blocking failures."""
+    from macrosignal.config import find_project_root
+    from macrosignal.validation import main
+
+    project_root = root.resolve() if root else find_project_root(Path.cwd())
+    code = main(project_root, out=typer.echo)
+    if code:
+        raise typer.Exit(code=code)
+
+
 @config_app.command("validate")
 def config_validate(
     path: Annotated[

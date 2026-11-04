@@ -207,6 +207,20 @@ ruff check .
 python scripts/validate_project.py
 ```
 
+### Repository Health Check
+
+`python scripts/validate_project.py` (or `macrosignal validate`) runs
+`macrosignal.validation`: required files, `pyproject.toml` parsing, unique task
+ids with backward dependencies and a `docs/TASKS.md` ledger consistent with
+`docs/PROJECT_PHASES_AND_TASKS.md`, internal Markdown links, unresolved
+`configs/*.yaml` paths, research-config schema validation, tracked
+secret-prone files (`.env`, keys, credentials), credential-looking content,
+non-empty secrets in `.env.example`, and prior-project contamination. It exits
+non-zero on any blocking issue. The structural checks need only the standard
+library, so CI runs the script before installing dependencies (config-schema
+validation is then reported as skipped) and again via `macrosignal validate`
+after installation.
+
 ## Configuration
 
 Committed research configs live in `configs/research/*.yaml`. Each declares a
