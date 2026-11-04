@@ -32,8 +32,8 @@ Update only after verification.
 - [x] **Task 2.3** — FRED Series Metadata Normalization — Commit: `fd5d6cd` — GitHub: `pushed`
 - [x] **Task 2.4** — ALFRED Vintage-Date Retrieval — Commit: `39a754b` — GitHub: `pushed`
 - [x] **Task 2.5** — Initial Release & Revision Observation Retrieval — Commit: `b4f9dbd` — GitHub: `pushed`
-- [x] **Task 2.6** — Release-Family / Series Mapping Registry — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 2.7** — BLS Release Calendar Adapter — Commit: `—` — GitHub: `—`
+- [x] **Task 2.6** — Release-Family / Series Mapping Registry — Commit: `316cc4c` — GitHub: `pushed`
+- [x] **Task 2.7** — BLS Release Calendar Adapter — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 2.8** — BEA Release Schedule & Estimate-Stage Adapter — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.9** — Federal Reserve FOMC Event Calendar Adapter — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.10** — Treasury Nominal & Real Yield-Curve Adapter — Commit: `—` — GitHub: `—`
