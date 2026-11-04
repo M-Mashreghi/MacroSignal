@@ -228,3 +228,20 @@ seed
 code_commit
 created_at
 ```
+
+### Manifest implementation (Task 1.9)
+
+`ResearchSnapshot` and `ResearchRun` are implemented in
+`macrosignal.domain.manifest` as frozen models. Serialization uses
+`canonical_json` (sorted keys, compact separators, UTC ISO-8601 timestamps,
+naive datetimes and non-finite floats rejected) and `stable_hash` returns
+`sha256:<hex>` of that text. Ids are derived from identity content (everything
+except `created_at`): `snap_<20 hex>` from `as_of`, sorted unique
+`input_snapshot_ids`, `config_hash` and `code_commit`; `run_<20 hex>` from the
+rest of the run manifest. Validators reject ids that do not match content, a
+snapshot `created_at` before `as_of`, and non-hex `code_commit` values (an
+optional `-dirty` suffix is allowed and visible). A run additionally records
+`protocol_version` and embeds every config it used as a `ConfigRecord` (name,
+source path, full content, verified hash) in the slots `feature`, `regime`,
+`signal`, `portfolio`, `execution`; each `*_config_hash` must equal the embedded
+record's hash, so a run is auditable from its manifest alone.

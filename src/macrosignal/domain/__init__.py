@@ -40,6 +40,14 @@ from macrosignal.domain.macro_observation import (
     ReleaseStage,
     SeasonalAdjustment,
 )
+from macrosignal.domain.manifest import (
+    RUN_CONFIG_SLOTS,
+    ConfigRecord,
+    ResearchRun,
+    ResearchSnapshot,
+    canonical_json,
+    stable_hash,
+)
 from macrosignal.domain.market import (
     FIELD_ADJUSTMENTS,
     AdjustmentPolicy,
@@ -53,6 +61,12 @@ from macrosignal.domain.release_event import ReleaseEvent
 from macrosignal.domain.timezones import validate_iana_timezone
 
 __all__ = [
+    "RUN_CONFIG_SLOTS",
+    "ConfigRecord",
+    "ResearchRun",
+    "ResearchSnapshot",
+    "canonical_json",
+    "stable_hash",
     "EXECUTION_PRESETS",
     "RETURN_CONVENTION_INPUTS",
     "AvailabilityViolation",
