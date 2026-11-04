@@ -103,3 +103,17 @@ only be held in `ExPostDiagnostics`, which has no conversion to the live type.
 contemporaneous filter and rejects states whose probabilities differ (smoothed
 numbers relabelled as `filtered`). `tests/regression/test_smoothed_leakage_guard.py`
 attempts each leakage path and requires it to fail.
+
+## Regime Confidence (Task 4.7)
+
+`macrosignal.regimes.confidence.assess(state, policy)` reports, per regime
+observation, `max_probability`, `normalized_entropy` (entropy / log K),
+`alignment_confidence` (1.0 for rule labels, 0 when unaligned) and
+`effective_confidence = sharpness x alignment_confidence` with
+`sharpness = (max_probability - 1/K) / (1 - 1/K)`. `LowConfidencePolicy`
+(`min_max_probability`, `max_normalized_entropy`, `min_alignment_confidence`,
+`action`) marks low-confidence states with reasons; their `signal_weight` is 0
+(no regime tilt). Otherwise `neutral` gives weight 1 and `scale` gives
+`effective_confidence`. No action carries an old regime forward or rounds
+probabilities up. `confidence_rows()` exposes all fields for research outputs
+and the dashboard.
