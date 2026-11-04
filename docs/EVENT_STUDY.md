@@ -40,3 +40,16 @@ Flag:
 - overlapping macro releases,
 - major scheduled policy events,
 - very close events where attribution is unclear.
+
+## Event-to-Market Alignment (Task 4.11)
+
+`macrosignal.event_study.alignment.align_event(event, calendar, precision)`
+uses the release's *actual* time (scheduled-only events are refused) converted
+to America/New_York and classifies it as `pre_open` (reacts in the same
+session), `market_hours` (same session; its open precedes the event, flagged by
+`open_is_post_event = False`), `post_close` (next session), `non_session`
+(weekend / holiday / closure: next session) or `date_level` (date-only or
+inferred precision: next session after the date, baseline before the date).
+The baseline is the close of the last session strictly before the information
+could be known; early closes use their 13:00 close. Event-time precision and
+release stage are carried through; `unknown` precision cannot be aligned.

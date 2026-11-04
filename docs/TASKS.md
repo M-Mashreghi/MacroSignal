@@ -70,8 +70,8 @@ Update only after verification.
 - [x] **Task 4.7** — Regime Probability Uncertainty & Low-Confidence Policy — Commit: `316f7c6` — GitHub: `pushed`
 - [x] **Task 4.8** — PCA / Dynamic-Factor Macro-State Baseline — Commit: `5f80d24` — GitHub: `pushed`
 - [x] **Task 4.9** — Regime Model / State-Count Selection Policy — Commit: `4837096` — GitHub: `pushed`
-- [x] **Task 4.10** — Regime Persistence, Transition & Alignment Diagnostics — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 4.11** — Macro Event-to-Market Alignment Engine — Commit: `—` — GitHub: `—`
+- [x] **Task 4.10** — Regime Persistence, Transition & Alignment Diagnostics — Commit: `4281756` — GitHub: `pushed`
+- [x] **Task 4.11** — Macro Event-to-Market Alignment Engine — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 4.12** — Daily Event-Study Return Windows — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.13** — Intraday Event-Study Interface — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.14** — Event Clusters, Overlap & Statistical Event Study — Commit: `—` — GitHub: `—`
