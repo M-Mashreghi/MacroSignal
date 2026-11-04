@@ -93,3 +93,17 @@ cutoff = creation time, availability, input snapshot ids) wrapped in a
 `BaselineForecast` labelled `forecast_error`; too little history yields a
 skipped forecast with a reason. `rolling_forecasts` runs the rolling origin
 over a set of releases in chronological order.
+
+## Surprise Engine (Task 3.13)
+
+`macrosignal.surprises.engine.compute_surprise(store, series, transformation,
+release, service, mode)` returns a `SurpriseRecord` with
+`raw_surprise = actual - expected`, labelled `market_surprise` (consensus),
+`forecast_error` (model forecast) or `proxy_surprise` (proxy) by mode, with the
+expectation type and provider kept explicit. The actual is the value of the
+release's own stage (initial print, or the GDP advance/second/third estimate
+the event published), transformed from the as-of view at the moment that
+vintage became available, never a later revision. The expectation comes from
+`ExpectationService` at the actual release time. Without a valid expectation
+the status is `missing_expectation` (no surprise value); without the actual,
+`missing_actual`. Units of actual and expectation must agree.
