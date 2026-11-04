@@ -86,8 +86,8 @@ Update only after verification.
 - [x] **Task 5.6** — Surprise / Forecast-Error Score with Decay — Commit: `03fa611` — GitHub: `pushed`
 - [x] **Task 5.7** — Trend Guardrail Signal — Commit: `66b47f0` — GitHub: `pushed`
 - [x] **Task 5.8** — Combined Transparent Signal Model — Commit: `197217f` — GitHub: `pushed`
-- [x] **Task 5.9** — Equal-Weight & Static Allocation Baselines — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 5.10** — Long / Flat Signal Portfolio — Commit: `—` — GitHub: `—`
+- [x] **Task 5.9** — Equal-Weight & Static Allocation Baselines — Commit: `27e5a8d` — GitHub: `pushed`
+- [x] **Task 5.10** — Long / Flat Signal Portfolio — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 5.11** — Volatility-Targeted Portfolio — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.12** — Risk-Parity Portfolio — Commit: `—` — GitHub: `—`
 - [ ] **Task 5.13** — Constrained Mean-Variance & Unified Weight Validator — Commit: `—` — GitHub: `—`

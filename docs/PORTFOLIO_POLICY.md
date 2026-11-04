@@ -65,3 +65,13 @@ weights of assets not yet tradable go to cash by default or are redistributed
 pro rata with `unavailable_policy: renormalize`, with notes either way).
 `RebalanceSchedule(frequency)` lists daily, weekly (first session of each ISO
 week) or monthly (first session of each month) rebalance sessions.
+
+## Long / Flat Portfolio (Task 5.10)
+
+`macrosignal.portfolio.long_flat.long_flat_weights(scores, universe,
+LongFlatSettings, cash)` holds assets whose score exceeds `min_score` and keeps
+all others flat (never short). Longs are sized proportionally to score or
+equally, scaled to `max_gross`, and capped at `max_weight`; capped excess is
+held in cash, not redistributed. Scores for non-tradable assets are ignored
+with a note, and all unallocated capital is cash earning the declared
+`CashReturnSpec`.
