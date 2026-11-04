@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Synthetic//BEA schedule fixture//EN
+BEGIN:VEVENT
+DTSTART;TZID=US-Eastern:20260730T083000
+SUMMARY:GDP (Advance Estimate)\, 2nd Quarter 2026
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=US-Eastern:20260827T083000
+SUMMARY:GDP (Second Estimate)\, Corporate Profits (Preliminary)\, 2nd Quarter 2026
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=US-Eastern:20260925T083000
+SUMMARY:Gross Domestic Product\, Second Quarter 2026 (Third Estimate)\, and Annual Update
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=US-Eastern:20260930T083000
+SUMMARY:Personal Income and Outlays\, August 2026
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=US-Eastern:20261029T083000
+SUMMARY:GDP (Advance Estimate) and Personal Income and Outlays\, 3rd Quarter 2026 and September 2026
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=US-Eastern:20261104T083000
+SUMMARY:U.S. International Trade in Goods and Services\, September 2026
+END:VEVENT
+END:VCALENDAR

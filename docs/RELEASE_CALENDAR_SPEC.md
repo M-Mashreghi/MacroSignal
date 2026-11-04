@@ -65,3 +65,25 @@ A schedule is not proof of publication: `actual_release_at` stays empty unless
 the caller opts in to `confirm_past_events`, which records an event still on a
 calendar retrieved at least `confirmation_lag` (default one day) after its
 scheduled time as released at that time.
+
+## BEA Adapter (Task 2.8)
+
+`macrosignal.calendar.bea` turns BEA schedule entries (an iCalendar feed via
+`parse_bea_ics`, or extracted `(title, aware timestamp)` rows via
+`parse_bea_schedule_rows`) into `ReleaseEvent`s with Eastern Time semantics:
+
+- `GDP` (quarterly): `advance`, `second` and `third` estimates are separate
+  events (`GDP-<year>Q<q>-<stage>`); annual / comprehensive updates are
+  `benchmark_revision`. Title variants such as `GDP (Advance Estimate), 3rd
+  Quarter 2026`, `Gross Domestic Product, Second Quarter 2026 (Third
+  Estimate)` and `4th Quarter and Year 2026` are recognised.
+- `PCE` (monthly): `Personal Income and Outlays, <Month> <Year>` is the initial
+  release of that month (`PCE-<year>-<mm>`).
+- Combined titles yield one event per family; unrecognised titles are skipped
+  and listed.
+- Advance < second < third must be scheduled in chronological order and each
+  (family, period, stage) appears once, so estimate rounds are never collapsed.
+
+No BEA feed URL is hard-coded; `fetch_bea_calendar(http, url)` requires a
+caller-verified official URL. Actual release times follow the same opt-in
+`confirm_past_events` rule as the BLS adapter.
