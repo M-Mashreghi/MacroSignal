@@ -23,11 +23,11 @@ Update only after verification.
 - [x] **Task 1.10** — Artifact Registry & Local Storage Layout — Commit: `eee1967` — GitHub: `pushed`
 - [x] **Task 1.11** — Synthetic Point-in-Time Fixture Suite — Commit: `e3b77e4` — GitHub: `pushed`
 - [x] **Task 1.12** — Research Protocol & Hypothesis Registry — Commit: `1c9f6f7` — GitHub: `pushed`
-- [x] **Task 1.13** — Project Validation CLI & Repository Health Check — Commit: `pending` — GitHub: `pending`
+- [x] **Task 1.13** — Project Validation CLI & Repository Health Check — Commit: `eac5915` — GitHub: `pushed`
 
 ## Phase 2 — Point-in-Time Data, Release Calendar & Market Data
 
-- [ ] **Task 2.1** — HTTP Client, Retry & Raw Snapshot Layer — Commit: `—` — GitHub: `—`
+- [x] **Task 2.1** — HTTP Client, Retry & Raw Snapshot Layer — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 2.2** — FRED / ALFRED API Client — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.3** — FRED Series Metadata Normalization — Commit: `—` — GitHub: `—`
 - [ ] **Task 2.4** — ALFRED Vintage-Date Retrieval — Commit: `—` — GitHub: `—`

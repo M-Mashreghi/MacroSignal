@@ -87,3 +87,24 @@ Support:
 - model-based pre-release forecast.
 
 Never scrape or redistribute proprietary consensus history.
+
+## Transport & Raw Snapshots (Task 2.1)
+
+All source adapters fetch through `macrosignal.data.http.HttpClient`
+(provider-neutral, synchronous `httpx`):
+
+- explicit timeout; transport errors and HTTP 408/425/429/5xx are retried with
+  capped exponential backoff (a bounded `Retry-After` is honoured) up to
+  `max_attempts`, then `HttpRetryExhaustedError`;
+- other 4xx (authentication, bad request, not found) raise
+  `HttpNonRetryableError` immediately; malformed JSON raises
+  `ResponseSchemaError` and is never retried;
+- query parameters must be passed via `params=`; credential parameters
+  (`api_key`, `registrationkey`, `UserID`, ...) are redacted to `***` in all
+  stored metadata;
+- each response becomes a `RawSnapshot` before normalization: sha256 of the raw
+  payload plus a stable hash of the redacted request (source, method, URL,
+  params). `snapshot_id = raw_<source>_<hash>` is independent of retrieval time
+  and API key, so identical re-fetches are idempotent;
+- `persist_snapshot` stores `payload.bin` and `request.json` as an immutable
+  `raw_snapshot` artifact under `data/raw/<source>/` (git-ignored).
