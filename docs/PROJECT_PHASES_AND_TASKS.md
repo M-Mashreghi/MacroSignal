@@ -528,7 +528,7 @@ reproducibility, and practical usability.
 ---
 ### Task 2.4: ALFRED Vintage-Date Retrieval
 
-**Status:** `[ ]` Not Started  
+**Status:** `[x]` Completed\
 **Depends on:** `2.3`
 
 **Purpose**  
@@ -547,14 +547,14 @@ reproducibility, and practical usability.
 - Confirm no unrelated files, secrets, or restricted raw data are staged.
 
 **Definition of Done**
-- [ ] Task-specific implementation exists.
-- [ ] Relevant automated validation passes.
-- [ ] PIT / chronology invariants pass where applicable.
-- [ ] Research provenance is preserved.
-- [ ] Documentation and task status are synchronized.
-- [ ] A dedicated `task(2.4): ...` commit exists.
-- [ ] Commit is pushed and upstream is verified when `origin` is configured.
-- [ ] Claude stops before the next task.
+- [x] Task-specific implementation exists.
+- [x] Relevant automated validation passes.
+- [x] PIT / chronology invariants pass where applicable.
+- [x] Research provenance is preserved.
+- [x] Documentation and task status are synchronized.
+- [x] A dedicated `task(2.4): ...` commit exists.
+- [x] Commit is pushed and upstream is verified when `origin` is configured.
+- [x] Claude stops before the next task.
 
 ---
 ### Task 2.5: Initial Release & Revision Observation Retrieval

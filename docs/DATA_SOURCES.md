@@ -133,3 +133,16 @@ release id/name, and the `metadata_snapshot_ids` of the raw responses.
 blocking and title / release changes as non-blocking; `assert_compatible`
 raises `DefinitionChangeError` so incompatible histories are never merged
 silently.
+
+## ALFRED Vintage Dates (Task 2.4)
+
+`macrosignal.data.alfred.fetch_vintage_dates` retrieves every vintage date of a
+series into a `VintageDateSet` (strictly increasing, none after the retrieval
+date, raw snapshot ids kept); `fetch_pit_vintage_dates` does this for every
+`pit_required` FRED series of the macro registry, and `persist_vintage_dates`
+stores each set as an immutable `normalized` artifact
+(`data/processed/normalized/vintages_<series>_<hash>/`). `vintage_history`
+groups ALFRED observation records into per-reference-date revision chains
+ordered by `realtime_start`, keeps ALFRED's `.` as an explicit missing value,
+and rejects overlapping real-time periods or periods that do not start on a
+known vintage. Vintage dates remain date-level availability evidence.

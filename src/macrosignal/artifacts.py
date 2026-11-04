@@ -12,6 +12,7 @@ is an idempotent no-op, while different content raises
 Layout (relative to the configured data / reports directories)::
 
     data/raw/<source>/<artifact_id>/        raw_snapshot
+    data/processed/normalized/<artifact_id>/normalized
     data/snapshots/pit/<artifact_id>/       pit_snapshot
     data/processed/features/<artifact_id>/  features
     data/processed/model_fits/<artifact_id>/model_fit
@@ -47,6 +48,7 @@ _SAFE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*")
 
 class ArtifactKind(StrEnum):
     RAW_SNAPSHOT = "raw_snapshot"
+    NORMALIZED = "normalized"
     PIT_SNAPSHOT = "pit_snapshot"
     FEATURES = "features"
     MODEL_FIT = "model_fit"
@@ -128,6 +130,8 @@ class ArtifactRegistry:
                 raise ValueError("raw_snapshot artifacts require a source")
             _check_id(source)
             return "data", f"raw/{source}/{artifact_id}"
+        if kind is ArtifactKind.NORMALIZED:
+            return "data", f"processed/normalized/{artifact_id}"
         if kind is ArtifactKind.PIT_SNAPSHOT:
             return "data", f"snapshots/pit/{artifact_id}"
         if kind is ArtifactKind.FEATURES:

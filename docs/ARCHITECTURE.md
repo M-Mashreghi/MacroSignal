@@ -73,6 +73,7 @@ registry `data/registry/artifacts.jsonl`:
 | Kind | Path |
 |---|---|
 | `raw_snapshot` | `data/raw/<source>/<artifact_id>/` |
+| `normalized` | `data/processed/normalized/<artifact_id>/` |
 | `pit_snapshot` | `data/snapshots/pit/<artifact_id>/` |
 | `features` | `data/processed/features/<artifact_id>/` |
 | `model_fit` | `data/processed/model_fits/<artifact_id>/` |

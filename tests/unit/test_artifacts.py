@@ -30,6 +30,7 @@ def reg(tmp_path: Path) -> ArtifactRegistry:
     [
         (ArtifactKind.RAW_SNAPSHOT, "fred", ("data", "raw/fred/a1")),
         (ArtifactKind.PIT_SNAPSHOT, None, ("data", "snapshots/pit/a1")),
+        (ArtifactKind.NORMALIZED, None, ("data", "processed/normalized/a1")),
         (ArtifactKind.FEATURES, None, ("data", "processed/features/a1")),
         (ArtifactKind.MODEL_FIT, None, ("data", "processed/model_fits/a1")),
         (ArtifactKind.BACKTEST, None, ("reports", "runs/a1/backtest")),
