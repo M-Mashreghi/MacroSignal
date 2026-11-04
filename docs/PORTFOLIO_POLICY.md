@@ -88,3 +88,15 @@ zero) the safe `fallback` keeps base weights unscaled (`unscaled`, default) or
 moves everything to cash (`cash`). `VolTargetDiagnostics` records target, base
 and final ex-ante volatility, raw / applied scale, caps, fallback and the
 estimate's fit time and window.
+
+## Risk Parity (Task 5.12)
+
+`macrosignal.portfolio.risk_parity.risk_parity(universe, estimate, cash,
+RiskParitySettings)` solves the convex equal-risk-contribution problem
+`min 0.5 w'Sw - sum b_i log w_i` (L-BFGS-B, equal budgets) on the ex-ante
+covariance of assets that are tradable and have an estimate (others excluded
+with reasons), normalizes to `invest`, and reports ex-ante risk contributions,
+ex-ante volatility and convergence. A non-positive-definite covariance gets a
+small diagonal ridge (recorded); if the optimizer fails or contributions are
+not within `tolerance` of equal, inverse-volatility weights are used and
+flagged. Estimates from after the rebalance session are refused.

@@ -88,8 +88,8 @@ Update only after verification.
 - [x] **Task 5.8** — Combined Transparent Signal Model — Commit: `197217f` — GitHub: `pushed`
 - [x] **Task 5.9** — Equal-Weight & Static Allocation Baselines — Commit: `27e5a8d` — GitHub: `pushed`
 - [x] **Task 5.10** — Long / Flat Signal Portfolio — Commit: `8242c9d` — GitHub: `pushed`
-- [x] **Task 5.11** — Volatility-Targeted Portfolio — Commit: `pending` — GitHub: `pending`
-- [ ] **Task 5.12** — Risk-Parity Portfolio — Commit: `—` — GitHub: `—`
+- [x] **Task 5.11** — Volatility-Targeted Portfolio — Commit: `95ce1d1` — GitHub: `pushed`
+- [x] **Task 5.12** — Risk-Parity Portfolio — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 5.13** — Constrained Mean-Variance & Unified Weight Validator — Commit: `—` — GitHub: `—`
 
 ## Phase 6 — Walk-Forward Backtesting & Execution Simulation
