@@ -47,3 +47,16 @@ Evaluate:
 - state frequency,
 - cross-asset separation,
 - out-of-sample usefulness.
+
+## Model A Implementation (Task 4.1)
+
+`macrosignal.regimes.quadrants.classify_frame(frame, rule)` reads a growth and
+an inflation feature from an `AsOfFeatureFrame` at each decision time and
+assigns `growth_disinflation` (growth above / inflation below threshold),
+`growth_inflation`, `slowdown_inflation` or `slowdown_disinflation`.
+`QuadrantRule` declares the two features and `threshold_method`: `fixed`
+(declared thresholds) or `expanding_median` / `expanding_mean` computed only
+from values at earlier decision times, with `min_history`. Missing inputs,
+stale inputs (unless `allow_stale`) and insufficient history give no label
+with an explicit status. Each `QuadrantState` reports the label, input values,
+their availability and the thresholds used.

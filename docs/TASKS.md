@@ -57,11 +57,11 @@ Update only after verification.
 - [x] **Task 3.11** — Timestamped Consensus CSV Adapter — Commit: `e3df6db` — GitHub: `pushed`
 - [x] **Task 3.12** — Pre-Release Forecast Baseline — Commit: `1f8242d` — GitHub: `pushed`
 - [x] **Task 3.13** — Raw Surprise / Forecast-Error Engine — Commit: `ffbd3b1` — GitHub: `pushed`
-- [x] **Task 3.14** — Point-in-Time Standardization & Composite Surprise Factors — Commit: `pending` — GitHub: `pending`
+- [x] **Task 3.14** — Point-in-Time Standardization & Composite Surprise Factors — Commit: `0f700a7` — GitHub: `pushed`
 
 ## Phase 4 — Regime Models, State Alignment & Event Studies
 
-- [ ] **Task 4.1** — Transparent Rule-Based Macro Quadrants — Commit: `—` — GitHub: `—`
+- [x] **Task 4.1** — Transparent Rule-Based Macro Quadrants — Commit: `pending` — GitHub: `pending`
 - [ ] **Task 4.2** — Regime State / Probability Data Model — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.3** — Gaussian Mixture Regime Baseline — Commit: `—` — GitHub: `—`
 - [ ] **Task 4.4** — Hidden Markov Model Regime Baseline — Commit: `—` — GitHub: `—`
